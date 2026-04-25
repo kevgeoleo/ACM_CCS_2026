@@ -1,0 +1,15 @@
+bug
+confirmed bug
+confirmed-bug
+crash
+crash reporter bug
+errors
+fix available
+flaky
+flaky-test
+high priority 
+panic
+patch
+quick fix
+regression
+report
