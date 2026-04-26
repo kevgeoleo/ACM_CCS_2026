@@ -1,6 +1,0 @@
-{"k":"**META**","v":{"states.protocolVersion":"4"}}
-{"k":"system.host.LAPTOP-RGAU0S12.plugins.sentry.enabled","v":{"val":false,"ack":true,"ts":1767185026436,"q":0,"from":"system.host.LAPTOP-RGAU0S12.plugins.sentry","lc":1767185026436}}
-{"k":"system.adapter.admin.upload","v":{"val":0,"ack":true,"ts":1767185027045,"q":0,"lc":1767185027045}}
-{"k":"admin.0.info.connected","v":{"val":"","ack":true,"ts":1767185033256,"q":0,"from":"system.host.LAPTOP-RGAU0S12.cli","lc":1767185033256}}
-{"k":"admin.0.info.connection","v":{"val":false,"ack":true,"ts":1767185033256,"q":0,"from":"system.host.LAPTOP-RGAU0S12.cli","lc":1767185033256}}
-{"k":"admin.0.info.updatesList","v":{"val":"","ack":true,"ts":1767185033257,"q":0,"from":"system.host.LAPTOP-RGAU0S12.cli","lc":1767185033257}}
