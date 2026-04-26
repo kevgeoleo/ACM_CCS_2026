@@ -1,0 +1,21 @@
+// test("Command Injection in ts-process-promises", () => {
+//   expect.assertions(2);
+  const a = require("ts-process-promises");
+  const fs = require("fs");
+  const path = "./ts-process-promises";
+  try {
+    if (fs.existsSync(path)) {
+      fs.unlinkSync(path);
+//       console.log("File removed:", path);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+  file_exist = fs.existsSync(path);
+console.log("{ " + file_exist + ", " + false + " }");
+  return a.exec("fsutil file createnew ts-process-promises 0", {}).finally(() => {
+    file_exist = fs.existsSync(path);
+console.log("{ " + file_exist + ", " + true + " }");
+    fs.unlink(path, function (err) {});
+  });
+// });

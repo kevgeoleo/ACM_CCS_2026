@@ -60,7 +60,7 @@ def fetch_stream_with_retry(messages, model=MODEL, max_retries=5, base_delay=2):
 
             if "context_length_exceeded" in err_str:
                 print("Skipping issue due to context length limit")
-                return None  # signal skip
+                return None  
 
             print("Fatal API error, writing partial results:", e)
             with open(OUTPUT_FILE, "w", encoding="utf-8") as f:

