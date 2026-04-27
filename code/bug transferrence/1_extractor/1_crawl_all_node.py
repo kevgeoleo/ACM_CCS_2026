@@ -5,7 +5,7 @@ import os
 
 cwd = os.getcwd()
 
-TOKEN = "insert_token"
+TOKEN = "your_token"
 OUTPUT_FILE = os.path.join(cwd, "json", "1_initial", "node_bugs_with_comments.json")
 
 HEADERS = {
@@ -39,6 +39,7 @@ def fetch_all_issues_with_comments(owner, repo, max_issues=20000):
                     url
                     createdAt
                     state
+                    stateReason
                     body
                     author {
                       login
@@ -89,6 +90,7 @@ def fetch_all_issues_with_comments(owner, repo, max_issues=20000):
                 "url": issue["url"],
                 "created_at": issue["createdAt"],
                 "state": issue["state"],
+                "state_reason": issue['stateReason'],
                 "body": issue["body"],
                 "author": issue["author"]["login"] if issue["author"] else None,
                 "labels": label_names,
@@ -105,6 +107,7 @@ def fetch_all_issues_with_comments(owner, repo, max_issues=20000):
         cursor = issues_data["pageInfo"]["endCursor"]
         has_next_page = issues_data["pageInfo"]["hasNextPage"]
         print(f"Fetched {len(all_issues)} issues so far...")
+        save_to_json(all_issues, OUTPUT_FILE)
         time.sleep(0.5)  # Avoid hitting rate limits
 
     return all_issues

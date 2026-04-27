@@ -39,6 +39,7 @@ def fetch_bug_issues(owner, repo, max_issues=15000):
                     url
                     createdAt
                     state
+                    stateReason
                     body
                     author {
                       login
@@ -90,6 +91,7 @@ def fetch_bug_issues(owner, repo, max_issues=15000):
                     "url": issue["url"],
                     "created_at": issue["createdAt"],
                     "state": issue["state"],
+                    "state_reason": issue['stateReason'],
                     "body": issue["body"],
                     "author": issue["author"]["login"] if issue["author"] else None,
                     "labels": label_names,

@@ -8,7 +8,7 @@ labels = os.path.join(cwd,"relevant_labels.txt")
 input_path = os.path.join(cwd,"json","1_initial","bun_bugs.json")
 output_path = os.path.join(cwd,"json","2_relevant","bun_relevant_bugs.json")
 
-# Load the labels from labels.txt into a set for fast lookup
+# Load the labels into a set for fast lookup
 with open(labels, "r", encoding="utf-8") as f:
     valid_labels = set(label.strip().lower() for label in f if label.strip())
 

@@ -1,0 +1,23 @@
+invalid
+more info
+needs info
+wontfix
+wont fix
+duplicate
+not planned
+triage
+needs triage
+needs investigate
+waiting-for-author
+stale
+s3
+redis
+needs repro
+docker
+sql
+question
+triage required 👀
+suggestion
+needs info
+needs discussion
+needs investigation
