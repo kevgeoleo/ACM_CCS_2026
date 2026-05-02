@@ -1,7 +1,9 @@
 ## output folder:
 
-All translated issues are not included as output of the PoCs may contain secrets like API keys
-So a few handpicked issues have been included in sample folder
+All translated issues are not included as output of the PoCs may contain secrets like API keys, environment variables
+So a few handpicked issues have been included in node_issues.json
+This file contains issues extracted from node GitHub repo and translated to Deno and Bun
+Issue url has been redacted and urls within issue body have been hashed
 
 ## node_poc folder
 
