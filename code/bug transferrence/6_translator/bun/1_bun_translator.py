@@ -59,7 +59,6 @@ def run_translation_pipeline():
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Recovery logic: check if output file already exists to resume
     if os.path.exists(OUTPUT_FILE):
         with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
             results = json.load(f)
@@ -121,7 +120,6 @@ def run_translation_pipeline():
 
         except Exception as e:
             print(f"\n[ERROR] Fatal error on entry {entry['number']}: {e}")
-            # Save progress before crashing
             with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
                 json.dump(results, out, indent=2, ensure_ascii=False)
             break

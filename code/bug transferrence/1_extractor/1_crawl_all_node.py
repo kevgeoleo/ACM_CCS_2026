@@ -118,6 +118,5 @@ def save_to_json(data, filename):
         json.dump(data, f, indent=2)
     print(f"Saved {len(data)} issues to {filename}")
 
-# Run for nodejs/node all issues with comments
 issues = fetch_all_issues_with_comments("nodejs", "node")
 save_to_json(issues, OUTPUT_FILE)

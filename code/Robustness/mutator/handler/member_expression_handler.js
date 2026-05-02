@@ -7,22 +7,21 @@ const fs = require("fs");
 let file_name_count = 1
 
 function createFile(filePath,code){
-    // ---- path handling ----
+    // path handling
     const dir = path.dirname(filePath);
-    const fullBase = path.basename(filePath); // full filename with all extensions
+    const fullBase = path.basename(filePath); 
 
     // Split at first dot
     const dotIndex = fullBase.indexOf(".");
     let base, restExt;
     if (dotIndex !== -1) {
       base = fullBase.slice(0, dotIndex);
-      restExt = fullBase.slice(dotIndex); // includes all remaining extensions
+      restExt = fullBase.slice(dotIndex); 
     } else {
       base = fullBase;
       restExt = "";
     }
 
-    // ---- file 1 ----
     const outPath = path.join(dir, `${base}_${file_name_count}${restExt}`);
     if(fs.existsSync(outPath)){
       file_name_count++;
@@ -156,173 +155,12 @@ function variant_caller(arr,filePath){
 
 function member_expression_handler(filePath,code,value,type="member_proto_access"){
 
-  //console.log(value,":",typeof value)  //obj.__proto__.polluted : string
   var value2 = value.replace("__proto__","constructor.prototype")
-  //var value3 = value.replace("__proto__","\\x5F\\x5Fproto\\x5F\\x5F")
-  //var value4 = value.replace("__proto__","\\u005F\\u005Fproto\\u005F\\u005F")
     
   var code1 = ast_replacer("member_proto_access",value,value2,code)
-  //var code2 = ast_replacer("member_proto_access",value,value3,code)
-  //var code3 = ast_replacer("member_proto_access",value,value4,code)
   
   createFile(filePath,code1)
-  //createFile(filePath,code2)
-  //createFile(filePath,code3)
   variant_caller([code1,code],filePath)
-
-  /*if(value.length == 1){
-    //console.log(value," : ",value[0])
-    if(value[0] == "__proto__" && !Array.isArray(value[0])){
-
-      var code1 = ast_replacer("member_proto_access",value,["constructor.prototype"],code)
-      var code2 = ast_replacer("member_proto_access",value,["constructor","prototype"],code)
-      createFile(filePath,code1)
-      createFile(filePath,code2)
-
-    }else if(Array.isArray(value[0]) && value[0].length === 1 && value[0][0] === "__proto__"){
-
-      var code1 = ast_replacer("member_proto_access",value,[["constructor"],["prototype"]],code)
-      createFile(filePath,code1)
-
-    }else{
-
-      console.log('edge case array proto 1')
-
-    }
-  }else if(value.length == 2){
-    if(Array.isArray(value[0]) && value[0].length === 1 && value[0][0] === "__proto__"){
-      var code1 = ast_replacer("member_proto_access",value,[["constructor"],["prototype"],value[1]],code)
-      createFile(filePath,code1)
-    }else if(typeof value[0] == 'string' && value[0] == '__proto__'){
-      console.log('here')
-      var code1 = ast_replacer("member_proto_access",value,["constructor","prototype",value[1]],code)
-      var code2 = ast_replacer("member_proto_access",value,["constructor.prototype",value[1]],code)
-      createFile(filePath,code1)
-      createFile(filePath,code2)
-    }
-  }
-  /*if(value == "__proto__"){
-    if(type == "member_proto_access"){
-      var code1 = ast_replacer("member_proto_access","__proto__","constructor.prototype",code)
-      var code2 = ast_replacer("member_proto_access","__proto__",["'constructor'","'prototype'"],code)
-      createFile(filePath,code1)
-      createFile(filePath,code2)
-    }else if(type == "object_value"){
-      var code1 = ast_replacer("object_value","__proto__","constructor.prototype",code)
-      createFile(filePath,code1)
-    }
-    
-  }else if(regex1.test(value)){
-    var match = value.match(regex1);
-    var some_string = match[1];
-
-    var code1 = ast_replacer("member_proto_access",value,"constructor.prototype." + some_string, code)
-    createFile(filePath,code1)
-  
-  }else if(regex2.test(value)){
-    var match = value.match(regex2);
-    var some_string = match[1];
-    var some_other_string = match[2];
-
-    var code1 = ast_replacer("member_proto_access",value,`{"constructor": {"prototype": {"${some_string}":"${some_other_string}"}}}`, code)
-    var code2 = ast_replacer("member_proto_access",value,`{"constructor.prototype": {"${some_string}":"${some_other_string}"}}`, code)
-    createFile(filePath,code1)
-    createFile(filePath,code2)
-  }else if(regex3.test(value)){
-    var match = value.match(regex3);
-    var some_string = match[1];
-    var some_other_string = match[2];
-    var another_string = match[3]
-
-    var code1 = ast_replacer("member_proto_access",value,`{"${some_string}": {"constructor": {"prototype": {"${some_other_string}":"${another_string}"}}}}`, code)
-    var code2 = ast_replacer("member_proto_access",value,`{"${some_string}": {"constructor.prototype": {"${some_other_string}":"${another_string}"}}}`, code)
-    createFile(filePath,code1)
-    createFile(filePath,code2)
-  }else if(regex4.test(value)){
-    var match = value.match(regex4);
-    var some_string = match[1];
-
-    var code1 = ast_replacer("member_proto_access",value,`/constructor/prototype/${some_string}`, code)
-    createFile(filePath,code1)
-  }else if(regex5.test(value)){
-    var match = value.match(regex5);
-    var some_string = match[1];
-
-    var code1 = ast_replacer("member_proto_access",value,`constructor/prototype/${some_string}`, code)
-    createFile(filePath,code1)
-  }else if(regex6.test(value)){
-    var match = value.match(regex6);
-    var some_string = match[1];
-    var some_other_string = match[2]
-
-    var code1 = ast_replacer("member_proto_access",value,`constructor.prototype[${some_string}]=${some_other_string}`, code)
-    var code2 = ast_replacer("member_proto_access",value,`constructor[prototype][${some_string}]=${some_other_string}`, code)
-    createFile(filePath,code1)
-    createFile(filePath,code2)
-  }else if(regex7.test(value)){
-    var match = value.match(regex7);
-    var some_string = match[1];
-
-    var code1 = ast_replacer("member_proto_access",value,`constructor.prototype[${some_string}]`, code)
-    var code2 = ast_replacer("member_proto_access",value,`constructor[prototype][${some_string}]`, code)
-    createFile(filePath,code1)
-    createFile(filePath,code2)
-  }else if(regex8.test(value)){
-    var match = value.match(regex8);
-    var some_string = match[1];
-
-    var code1 = ast_replacer("member_proto_access",value,`[constructor.prototype/${some_string}]`, code)
-    var code2 = ast_replacer("member_proto_access",value,`[constructor/prototype/${some_string}]`, code)
-    createFile(filePath,code1)
-    createFile(filePath,code2)
-  }else if(regex9.test(value)){
-    var match = value.match(regex9);
-    var some_string = match[1];
-
-    var code1 = ast_replacer("member_proto_access",value,`[constructor.prototype,${some_string}]`, code)
-    var code2 = ast_replacer("member_proto_access",value,`[constructor,prototype,${some_string}]`, code)
-    createFile(filePath,code1)
-    createFile(filePath,code2)
-  }else if(regex10.test(value)){
-    var match = value.match(regex10);
-    var some_string = match[1];
-
-    var code1 = ast_replacer("member_proto_access",value,`["constructor.prototype","${some_string}"]`, code)
-    var code2 = ast_replacer("member_proto_access",value,`["constructor","prototype","${some_string}"]`, code)
-    createFile(filePath,code1)
-    createFile(filePath,code2)
-  }else if(regex11.test(value)){
-    var match = value.match(regex11);
-    var some_string = match[1];
-    var some_other_string = match[2];
-
-    var code1 = ast_replacer("member_proto_access",value,`[constructor.prototype]\n${some_string}=${some_other_string}`, code)
-    var code2 = ast_replacer("member_proto_access",value,`[constructor][prototype]\n${some_string}=${some_other_string}`, code)
-    createFile(filePath,code1)
-    createFile(filePath,code2)
-  }else if(regex12.test(value)){
-    var match = value.match(regex12);
-    var some_string = match[1];
-    var some_other_string = match[2];
-
-
-    var code1 = ast_replacer("member_proto_access",value,`{{constructor.prototype.${some_string}=${some_other_string}}}`, code)
-    createFile(filePath,code1)
-  }else if(regex13.test(value)){
-    var match = value.match(regex13);
-    var some_string = match[1];
-    var some_other_string = match[2];
-
-    var code1 = ast_replacer("member_proto_access",value,`{{constructor.prototype.${some_string}="${some_other_string}"}}`, code)
-    createFile(filePath,code1)
-  }else if(regex14.test(value)){
-    var match = value.match(regex14);
-    var some_string = match[1];
-    var some_other_string = match[2];
-
-    var code1 = ast_replacer("member_proto_access",value,`${some_string}.constructor.prototype.${some_other_string}`, code)
-    createFile(filePath,code1)
-  }*/
 
 }
 

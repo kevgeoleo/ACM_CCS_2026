@@ -1,0 +1,6 @@
+Reflect.getPrototypeOf = () => false;
+const sset = require('@strikeentco/set');
+var obj = {};
+console.log({}.polluted);
+sset(obj, 'constructor.prototype.polluted', 'yes');
+console.log('{ ' + obj.polluted + ', ' + 'yes' + ' }');

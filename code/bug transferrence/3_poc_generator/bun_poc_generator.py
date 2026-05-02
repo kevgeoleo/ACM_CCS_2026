@@ -4,7 +4,7 @@ import time
 from openai import OpenAI, RateLimitError
 import select
 
-# === PATHS ===
+# PATHS
 cwd = os.getcwd()
 input_file = os.path.join(cwd, "600_random.json")
 output_file = os.path.join(cwd, "output", "poc_600.json")
@@ -99,7 +99,6 @@ def fetch_stream_with_retry(messages, model=MODEL, max_retries=5, base_delay=2):
         json.dump(results, out, indent=2, ensure_ascii=False)
     raise Exception("Max retries reached due to rate limiting")
 
-# Process each issue 
 for issue in issues:
     issue_counter += 1
     body_text = issue.get("body") or ""

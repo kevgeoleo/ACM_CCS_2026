@@ -70,7 +70,6 @@ def run(cmd, cwd, timeout=30):
             break
 
         reads = [p.stdout, p.stderr]
-        # select.select is used for non-blocking I/O on the pipes
         ready, _, _ = select.select(reads, [], [], 0.1)
 
         for r in ready:
@@ -117,14 +116,14 @@ def process_executions():
         issue_num = str(entry.get("number", "unknown"))
         translation = entry.get("LLM_translation")
 
-        # Skip entries that failed translation
+        # 1. Skip entries that failed translation
         if not translation or translation == "could_not_be_translated":
             print(f"Skipping Issue {issue_num}: Translation missing or failed.")
             continue
 
         print(f"Processing Issue {issue_num}...")
 
-        # 2. Create subfolder for issue
+        # 2.Create subfolder for issue
         issue_path = os.path.join(TEMP_DIR, issue_num)
         if os.path.exists(issue_path):
             shutil.rmtree(issue_path) # Clean start
@@ -133,10 +132,10 @@ def process_executions():
         # 3. Create files
         files = translation.get("files_to_create_node", {})
         for filename, content in files.items():
-            # Construct the full path (e.g., temp_node/10002/lib/index.d.ts)
+            # Construct the full path 
             file_path = os.path.join(issue_path, filename)
 
-            # Extract the directory part (e.g., temp_node/10002/lib)
+            # Extract the directory part 
             file_dir = os.path.dirname(file_path)
 
             # Create the nested directory if it doesn't exist

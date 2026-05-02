@@ -32,7 +32,7 @@ def run_runtime(runtime, file_path):
             capture_output=True,
             text=True,
             timeout=TIMEOUT,
-            cwd=str(cwd)     # <-- FIXED
+            cwd=str(cwd)    
         )
         return {
             "exit_code": proc.returncode,
@@ -119,7 +119,7 @@ def process_multiple_files(files):
 
         # Perfect file found
         if good_for_all:
-            print("  ✔ Found file with good output for all runtimes")
+            print(" Found file with good output for all runtimes")
             return temp_results
 
     # No perfect file, use best individual result

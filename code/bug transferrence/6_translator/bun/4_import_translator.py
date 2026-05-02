@@ -73,7 +73,7 @@ def walk_directory():
 if __name__ == "__main__":
     walk_directory()
 
-    print("\n========== Summary ==========")
+    print("\nSUMMARY: ")
     print(f"Scanned files : {scanned_files}")
     print(f"Updated files : {updated_files}")
     print(f"Skipped files : {skipped_files}")

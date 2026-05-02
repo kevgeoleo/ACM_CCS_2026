@@ -164,9 +164,7 @@ with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     json.dump(issues, f, indent=2)
 
 # PRINT STATS
-print("\n==============================")
 print("Verification Summary")
-print("==============================")
 for k, v in counts.items():
     print(f"{k}: {v}")
 

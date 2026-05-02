@@ -1,13 +1,7 @@
-// extractor.js
-// Supports BOTH: 
-//   node extractor.js "<code>"
-//   echo "<code>" | node extractor.js
-
 const acorn = require("acorn");
 const estraverse = require("estraverse");
 const path = require("path")
 const fs = require("fs");
-//const ast_replacer = require("./ast_replacer")
 const string_literal_handler = require("./handler/string_literal_handler")
 const object_key_handler = require("./handler/object_key_handler")
 const template_literal_handler = require("./handler/template_literal_handler")
@@ -44,13 +38,11 @@ function getMemberChain(node) {
 }
 
 
-
 // objects can have object within object, so this is there to basically identify 
 // and convert it into complete object as is in the code 
 function evaluateObject(node) {
   if (node.type !== "ObjectExpression") return null;
 
-  //const obj = {};
   const obj = Object.create(null);
 
 
@@ -98,15 +90,13 @@ function evaluateArray(node) {
     } else if (el.type === "ArrayExpression") {
       arr.push(evaluateArray(el));
     } else {
-      arr.push(null); // could extend to objects if needed
+      arr.push(null); 
     }
   }
 
   return arr;
 }
 
-
-//console.log('foo')
 function processCode(code, file_path = "<unknown>") {
   let ast;
 
@@ -185,7 +175,6 @@ function processCode(code, file_path = "<unknown>") {
         if (node.type === "MemberExpression") {
           const chain = getMemberChain(node);
           if (chain.includes("__proto__")) {
-            //addFinding("member_proto_access", { chain,raw: chain.join(".")});
             addFinding("member_proto_access", chain.join("."));
             this.break();
           }
@@ -204,7 +193,6 @@ function processCode(code, file_path = "<unknown>") {
 
           if (containsProto(fullArray)) {
             addFinding("array_with_proto", fullArray, node.loc);
-            //this.break();
           }
         }
 
@@ -218,12 +206,7 @@ function processCode(code, file_path = "<unknown>") {
     }
     });
 
-    /*console.log(JSON.stringify({
-    file: file_path,
-    findings
-  }, null, 2));*/
   return findings 
-  //console.log(JSON.stringify({ findings }, null, 2));
 }
 
 
@@ -237,7 +220,6 @@ process.stdin.on("data", chunk => {
 });
 
 process.stdin.on("end", () => {
-  //processCode(input);
   const code = fs.readFileSync(filePath, "utf-8");
   var findings = processCode(code, filePath);
     var else_is_safe = true 
@@ -251,14 +233,12 @@ process.stdin.on("end", () => {
         else_is_safe = false 
         array_with_proto_handler(filePath,code,finding.value)
       }else if(finding.type=="member_proto_access"){
-        //console.log(finding.value)
         member_expression_handler(filePath,code,finding.value)
       }
       else if (typeof finding.value === "object" && finding.value !== null) {
         console.log(finding.value)
 
       } else if(else_is_safe){
-        //console.log(finding.type, finding.value);
 
         if(finding.type == "template_literal"){
           template_literal_handler(filePath,code,finding.value)

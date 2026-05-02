@@ -84,7 +84,6 @@ def fetch_bug_issues(owner, repo, max_issues=15000):
 
         for issue in issues_data["nodes"]:
             label_names = [lbl["name"] for lbl in issue["labels"]["nodes"]]
-            #if label.lower() in [l.lower() for l in label_names]:
             all_issues.append({
                     "number": issue["number"],
                     "title": issue["title"],
@@ -117,6 +116,5 @@ def save_to_json(data, filename):
         json.dump(data, f, indent=2)
     print(f"Saved {len(data)} issues to {filename}")
 
-# Run for oven-sh/bun with "bug" label
 issues = fetch_bug_issues("oven-sh", "bun")
 save_to_json(issues, OUTPUT_FILE)
