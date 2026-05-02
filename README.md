@@ -238,7 +238,7 @@
 
 ## Secbench results
 
-### Windows (Before mutations)
+### Windows (Vulnerable npm package versions)
 
 | code_injection |      |      |     |       |
 | :------------- | :--- | :--- | :-- | :---- |
@@ -276,6 +276,15 @@
 | Error          | 0    | 2    | 3   | 5     |
 | Total          | 170  | 170  | 170 |       |
 
+| prototype_pollution (\_\_proto\_\_) |      |      |     |       |
+| :---------------------------------- | :--- | :--- | :-- | :---- |
+|                                     | Node | Deno | Bun | Total |
+| Vulnerable                          | 183  | 10   | 183 | 376   |
+| Not vulnerable                      | 8    | 181  | 6   | 195   |
+| Timeout                             | 0    | 0    | 0   | 0     |
+| Error                               | 1    | 1    | 3   | 5     |
+| Total                               | 192  | 192  | 192 |       |
+
 | prototype_pollution (constructor.prototype) |      |      |     |       |
 | :------------------------------------------ | :--- | :--- | :-- | :---- |
 |                                             | Node | Deno | Bun | Total |
@@ -284,3 +293,189 @@
 | Timeout                                     | 0    | 0    | 0   | 0     |
 | Error                                       | 1    | 1    | 3   | 5     |
 | Total                                       | 192  | 192  | 192 |       |
+
+## Linux (Vulnerable npm package versions)
+
+| code_injection |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 40   | 32   | 36  | 108   |
+| Not vulnerable | 0    | 7    | 4   | 11    |
+| Timeout        | 0    | 0    | 0   | 0     |
+| Error          | 0    | 1    | 0   | 1     |
+| Total          | 40   | 40   | 40  |       |
+
+| command_injection |      |      |     |       |
+| :---------------- | :--- | :--- | :-- | :---- |
+|                   | Node | Deno | Bun | Total |
+| Vulnerable        | 91   | 91   | 92  | 274   |
+| Not vulnerable    | 6    | 5    | 2   | 13    |
+| Timeout           | 0    | 0    | 0   | 0     |
+| Error             | 4    | 5    | 7   | 16    |
+| Total             | 101  | 101  | 101 |       |
+
+| redos          |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 95   | 94   | 79  | 268   |
+| Not vulnerable | 3    | 4    | 19  | 26    |
+| Timeout        | 0    | 0    | 0   | 0     |
+| Error          | 0    | 0    | 0   | 0     |
+| Total          | 98   | 98   | 98  |       |
+
+| path_traversal |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 166  | 158  | 165 | 489   |
+| Not vulnerable | 4    | 9    | 3   | 16    |
+| Timeout        | 0    | 0    | 0   | 0     |
+| Error          | 0    | 3    | 2   | 5     |
+| Total          | 170  | 170  | 170 |       |
+
+| prototype_pollution (\_\_proto\_\_) |      |      |     |       |
+| :---------------------------------- | :--- | :--- | :-- | :---- |
+|                                     | Node | Deno | Bun | Total |
+| Vulnerable                          | 186  | 10   | 185 | 381   |
+| Not vulnerable                      | 6    | 182  | 5   | 193   |
+| Timeout                             | 0    | 0    | 0   | 0     |
+| Error                               | 0    | 0    | 2   | 2     |
+| Total                               | 192  | 192  | 192 |       |
+
+| prototype_pollution (constructor.prototype) |      |      |     |       |
+| :------------------------------------------ | :--- | :--- | :-- | :---- |
+|                                             | Node | Deno | Bun | Total |
+| Vulnerable                                  | 186  | 76   | 186 | 448   |
+| Not vulnerable                              | 6    | 116  | 4   | 126   |
+| Timeout                                     | 0    | 0    | 0   | 0     |
+| Error                                       | 0    | 0    | 2   | 2     |
+| Total                                       | 192  | 192  | 192 |       |
+
+## Windows (Latest version of npm packages)
+
+| code_injection |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 17   | 17   | 17  | 51    |
+| Not vulnerable | 18   | 18   | 19  | 55    |
+| Timeout        | 1    | 0    | 0   | 1     |
+| Error          | 4    | 5    | 4   | 13    |
+| Total          | 40   | 40   | 40  |       |
+
+| redos          |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 16   | 16   | 11  | 43    |
+| Not vulnerable | 66   | 65   | 70  | 201   |
+| Timeout        | 0    | 0    | 0   | 0     |
+| Error          | 16   | 17   | 17  | 50    |
+| Total          | 98   | 98   | 98  |       |
+
+| command_injection_with_mutation |      |      |     |       |
+| :------------------------------ | :--- | :--- | :-- | :---- |
+|                                 | Node | Deno | Bun | Total |
+| Vulnerable                      | 52   | 47   | 50  | 149   |
+| Not vulnerable                  | 15   | 19   | 16  | 50    |
+| Timeout                         | 1    | 0    | 2   | 3     |
+| Error                           | 33   | 35   | 33  | 101   |
+| Total                           | 101  | 101  | 101 |       |
+
+| command_injection_without_mutation |      |      |     |       |
+| :--------------------------------- | :--- | :--- | :-- | :---- |
+|                                    | Node | Deno | Bun | Total |
+| Vulnerable                         | 46   | 46   | 46  | 138   |
+| Not vulnerable                     | 18   | 19   | 19  | 56    |
+| Timeout                            | 3    | 1    | 1   | 5     |
+| Error                              | 34   | 35   | 35  | 104   |
+| Total                              | 101  | 101  | 101 |       |
+
+| path_traversal |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 136  | 136  | 129 | 401   |
+| Not vulnerable | 30   | 30   | 36  | 96    |
+| Timeout        | 1    | 0    | 1   | 2     |
+| Error          | 3    | 4    | 4   | 11    |
+| Total          | 170  | 170  | 170 |       |
+
+| prototype_pollution (constructor.prototype) |      |      |     |       |
+| :------------------------------------------ | :--- | :--- | :-- | :---- |
+|                                             | Node | Deno | Bun | Total |
+| Vulnerable                                  | 52   | 21   | 54  | 127   |
+| Not vulnerable                              | 91   | 122  | 90  | 303   |
+| Timeout                                     | 2    | 1    | 0   | 3     |
+| Error                                       | 47   | 48   | 48  | 143   |
+| Total                                       | 192  | 192  | 192 |       |
+
+| prototype_pollution_with_mutation |      |      |     |       |
+| :-------------------------------- | :--- | :--- | :-- | :---- |
+|                                   | Node | Deno | Bun | Total |
+| Vulnerable                        | 87   | 38   | 86  | 211   |
+| Not vulnerable                    | 71   | 116  | 71  | 258   |
+| Timeout                           | 0    | 0    | 0   | 0     |
+| Error                             | 34   | 38   | 35  | 107   |
+| Total                             | 192  | 192  | 192 |       |
+
+## Linux (Latest version of npm packages)
+
+| code_injection |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 17   | 17   | 17  | 51    |
+| Not vulnerable | 19   | 18   | 19  | 56    |
+| Timeout        | 0    | 0    | 0   | 0     |
+| Error          | 4    | 5    | 4   | 13    |
+| Total          | 40   | 40   | 40  |       |
+
+| redos          |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 16   | 16   | 11  | 43    |
+| Not vulnerable | 66   | 65   | 70  | 201   |
+| Timeout        | 0    | 0    | 0   | 0     |
+| Error          | 16   | 17   | 17  | 50    |
+| Total          | 98   | 98   | 98  |       |
+
+| command_injection_without_mutation |      |      |     |       |
+| :--------------------------------- | :--- | :--- | :-- | :---- |
+|                                    | Node | Deno | Bun | Total |
+| Vulnerable                         | 53   | 52   | 53  | 158   |
+| Not vulnerable                     | 16   | 16   | 15  | 47    |
+| Timeout                            | 0    | 0    | 0   | 0     |
+| Error                              | 32   | 33   | 33  | 98    |
+| Total                              | 101  | 101  | 101 |       |
+
+| command_injection_with_mutation (proto) |      |      |     |       |
+| :-------------------------------------- | :--- | :--- | :-- | :---- |
+|                                         | Node | Deno | Bun | Total |
+| Vulnerable                              | 60   | 59   | 58  | 177   |
+| Not vulnerable                          | 12   | 13   | 11  | 36    |
+| Timeout                                 | 0    | 1    | 1   | 2     |
+| Error                                   | 29   | 28   | 31  | 88    |
+| Total                                   | 101  | 101  | 101 |       |
+
+| path_traversal |      |      |     |       |
+| :------------- | :--- | :--- | :-- | :---- |
+|                | Node | Deno | Bun | Total |
+| Vulnerable     | 143  | 142  | 145 | 430   |
+| Not vulnerable | 23   | 25   | 22  | 70    |
+| Timeout        | 0    | 0    | 0   | 0     |
+| Error          | 4    | 3    | 3   | 10    |
+| Total          | 170  | 170  | 170 |       |
+
+| prototype_pollution (constructor.prototype) |      |      |     |       |
+| :------------------------------------------ | :--- | :--- | :-- | :---- |
+|                                             | Node | Deno | Bun | Total |
+| Vulnerable                                  | 53   | 21   | 53  | 127   |
+| Not vulnerable                              | 95   | 126  | 94  | 315   |
+| Timeout                                     | 0    | 0    | 0   | 0     |
+| Error                                       | 44   | 45   | 45  | 134   |
+| Total                                       | 192  | 192  | 192 |       |
+
+| prototype_pollution_with_mutation |      |      |     |       |
+| :-------------------------------- | :--- | :--- | :-- | :---- |
+|                                   | Node | Deno | Bun | Total |
+| Vulnerable                        | 85   | 38   | 84  | 207   |
+| Not vulnerable                    | 74   | 117  | 74  | 265   |
+| Timeout                           | 0    | 0    | 0   | 0     |
+| Error                             | 33   | 37   | 34  | 104   |
+| Total                             | 192  | 192  | 192 |       |
