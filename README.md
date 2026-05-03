@@ -174,7 +174,7 @@
 | CVE-2026-28491      | GHSA-q5jx-7q8j-95vw | properties-reader | 3.0.0                 | 3700316          |
 | CVE-2026-33864      | GHSA-44fc-8fm5-q62h | convict           | 6.2.5                 | 959338           |
 
-## Advisories opened
+## Vulnerabilities Discovered
 
 | SL  | Category            | Package                 | Original error version | Affected versions   | Current version | Weekly downloads | Repo         | CVE/GHSA            |
 | :-- | :------------------ | :---------------------- | :--------------------- | :------------------ | :-------------- | :--------------- | :----------- | :------------------ |
@@ -236,7 +236,7 @@
 | 58  | Code injection      | m-log                   | 0.0.1                  | did not npm publish | 0.0.1           | 10               | url redacted |                     |
 | 59  | Command injection   | node-im-resize          | 2.3.2                  | did not npm publish | 2.3.2           | 515              | url redacted |                     |
 
-## Secbench results
+## Secbench Results
 
 ### Windows (Vulnerable npm package versions)
 
