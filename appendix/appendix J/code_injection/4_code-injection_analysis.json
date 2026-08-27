@@ -1,0 +1,189 @@
+{
+  "realms-shim": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "{\n  \"mitigation\": \"This code implements extensive, explicit defenses against code injection and unsafe dynamic evaluation.\\n\\nKey mitigations:\\n\\n1. **Isolation via Realms and Separate Globals**\\n   - `createNewUnsafeGlobalForNode()` uses Node's `vm.runInNewContext` to create a fresh global object (`unsafeGlobal`) isolated from the current realm.\\n   - `createNewUnsafeGlobalForBrowser()` creates a hidden iframe and uses `iframe.contentWindow.eval(unsafeGlobalSrc)` to obtain a separate global.\\n   - `createUnsafeRec()` and `createNewUnsafeRec()` bundle `unsafeGlobal`, `unsafeEval`, and `unsafeFunction` together as a matched set of intrinsics, preventing cross\u2011realm mixing that could lead to privilege escalation.\\n   - `createRealmRec()` builds a `safeGlobal` that inherits only from `unsafeGlobal.Object.prototype` and a curated set of descriptors (`sharedGlobalDescs`), not the full original global, limiting exposed surface.\\n\\n2. **Taming / Disabling Dangerous Constructors and Accessors**\\n   - `repairAccessors()` rewrites legacy accessors (`__defineGetter__`, `__defineSetter__`, `__lookupGetter__`, `__lookupSetter__`) to strict\u2011mode\u2011safe implementations, preventing sloppy\u2011mode behavior that could expose the global object.\\n   - `repairFunctions()` replaces the original `Function`, `GeneratorFunction`, `AsyncFunction`, and `AsyncGeneratorFunction` constructors with \u201ctamed\u201d versions that always throw (`TypeError('Not available')`). This blocks creation of new functions via constructors reachable from syntax, forcing function creation to go through the shim\u2019s controlled mechanisms.\\n   - These repairs are applied both in the primal realm (`createCurrentUnsafeRec()` calls `repairAccessors()` and `repairFunctions()`) and in newly created unsafe realms (`createNewUnsafeRec()` uses `unsafeEval(repairAccessorsString)()` and `unsafeEval(repairFunctionsString)()`), ensuring all execution contexts are hardened.\\n\\n3. **Controlled, Sandboxed Use of eval and Function**\\n   - Direct use of `eval` and `Function` is confined to carefully controlled contexts:\\n     - `unsafeEval` and `unsafeFunction` are captured from the fresh `unsafeGlobal` and never exposed directly to untrusted code.\\n"
+        }
+      }
+    ]
+  },
+  "mobile-icon-resizer": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Partial mitigations are present, but they are insufficient to prevent Code Injection. The code validates the platform value using an allowlist (platformConverters) before invoking a converter, and it uses path.join()/path.resolve() for filesystem path construction. However, the security-critical child_process.exec() call constructs a shell command through string concatenation using convertBin, inputFile, outputFile, and size. These values are not strictly validated or safely passed as arguments. In particular, convertBin can be supplied through options or configuration, and the file paths can potentially contain shell metacharacters. Although the input/output paths are surrounded by double quotes, this is not a robust command-injection mitigation because shell metacharacters can still be interpreted in some contexts. The code also uses math.eval(options.ratio), which is a dynamic expression evaluator and may introduce code/expression injection depending on the version and configuration of mathjs and the attacker’s ability to control ratio. A stronger mitigation would be to replace exec() with execFile() and pass ImageMagick arguments as an array, validate/allowlist convertBin and numeric ratios/sizes, and avoid math.eval() in favor of safe numeric parsing or a restricted expression parser."
+        }
+      }
+    ]
+  },
+  "value-censorship": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "{\n  \"mitigation\": \"The code implements multiple mitigations against code injection and unsafe dynamic execution:\\n\\n1. **Sandboxed execution with vm2**: Instead of using `eval`, `Function`, or Node's raw `vm` module, the code executes untrusted/transformed code via `new VM2({ sandbox })` and `vm.run(code)`. `vm2` is a hardened sandbox library designed to isolate executed code from the host environment, significantly reducing the risk of arbitrary code execution escaping into the main process.\\n\\n2. **Controlled sandbox environment**: The sandbox passed to `VM2` is explicitly constructed with `Object.assign({ __censorFn: censorFn }, sandbox)`. This means only `__censorFn` and explicitly provided properties are exposed to the untrusted code, limiting the attack surface and preventing implicit access to Node globals or the full process environment.\\n\\n3. **AST-based transformation instead of direct eval**: User-supplied `code` is parsed with `acorn.parse` into an AST and then transformed with `estraverse.replace` before execution. This avoids directly passing raw strings to `eval`/`Function` and allows structural inspection and modification of the code, which is a safer pattern than blind dynamic evaluation.\\n\\n4. **Argument wrapping via `__censorFn`**: All arguments to `CallExpression` and `NewExpression` nodes (except when the argument itself is a `CallExpression`) are wrapped in a call to `__censorFn`. Additionally, the callee is evaluated via `wrap(node.callee)` in a `SequenceExpression`. This means values being passed into function and constructor calls are intercepted and processed by `censorFn` before use, enabling validation, filtering, or blocking of dangerous values that might otherwise lead to code injection or unsafe behavior.\\n\\n5. **Post-execution censoring of return value**: After running the transformed code in the VM2 sandbox, the result `ret` is passed through `censorFn(ret)` before being returned. This provides an additional layer of output sanitization, preventing the caller from directly receiving potentially dangerous objects or references that might allow sandbox escape or further code injection.\\n\\n6. **Disallowing try/catch-based obfuscation via `CatchClause` ban**: The transformer throws `NoCatch('Catch clause is forbidden')` when"
+        }
+      }
+    ]
+  },
+  "thenify": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Removed eval()-based dynamic code generation and replaced it with a directly created wrapper function. The function name is now assigned only as a property using Object.defineProperty(), preventing a potentially attacker-controlled function name from being interpreted as executable JavaScript."
+        }
+      }
+    ]
+  },
+  "reduce-css-calc": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code does not use any dynamic code execution primitives such as eval(), new Function(), or string-based setTimeout/setInterval. It relies on the postcss-value-parser library to parse CSS values into an AST and then processes that AST via dedicated parser, reducer, and stringifier modules instead of interpreting strings as executable JavaScript. No child_process, vm, dynamic import/require based on user input, or shell command construction is present. This design\u2014using structured parsing and transformation of data rather than executing it as code\u2014acts as an implicit mitigation against code injection in this module\u2019s scope."
+        }
+      }
+    ]
+  },
+  "local-devices": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Changed Windows ARP table parsing from tab-based splitting to whitespace-based tokenization using split(/\\s+/g) with filtering of empty or single-character fields. This makes parsing robust against variations in whitespace formatting and prevents malformed ARP rows from being incorrectly interpreted due to unexpected tab/whitespace layout."
+        }
+      }
+    ]
+  },
+  "safe-eval": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code uses Node's vm.runInNewContext to execute untrusted code inside an isolated sandbox object instead of the main process context, which is a sandboxing mitigation against direct access to global objects. It also prepends a clearContext self-invoking function that attempts to disable dynamic code generation primitives by setting the global Function constructor to undefined and iterating over own properties of the global object to set each property's constructor to undefined when it is a function-like object. This is intended to reduce the attack surface for further code injection via new Function or constructor-based escapes. Additionally, the evaluated result is stored under a randomly generated property name (SAFE_EVAL_<random>) in the sandbox, which slightly obscures the result key from the evaluated code. However, the function still directly concatenates the untrusted code string into another string before execution, and relies solely on vm.runInNewContext and constructor tampering for isolation, without further input validation or strict allowlisting."
+        }
+      }
+    ]
+  },
+  "pixl-class": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Removed eval()-based reconstruction and execution of the parent constructor. The new implementation directly invokes the inherited parent constructor using parent.apply(this, args), eliminating dynamic code generation and preventing potentially attacker-controlled constructor source code from being interpreted as executable JavaScript."
+        }
+      }
+    ]
+  },
+  "static-eval": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code contains both mitigations and risky dynamic execution. Mitigations: (1) It avoids using eval() and instead uses a structured AST walker to interpret expressions, which is generally safer than evaluating arbitrary strings. (2) Member access is restricted via isUnsafeProperty(), which blocks access to 'constructor' and '__proto__', preventing common prototype pollution / escape vectors like obj.constructor.constructor('...') and Object.prototype.__proto__ chains. (3) There is an option rejectAccessToMethodsOnFunctions (enabled by default unless opts.allowAccessToMethodsOnFunctions is true) that prevents property access on function values, further reducing the risk of reaching Function.prototype or other dangerous methods via function objects. (4) CallExpression handling enforces that the callee must already be a function value obtained through the controlled walk() process, and it optionally uses a noExecute flag to walk function bodies without executing them when validating FunctionExpression nodes. However, the code also introduces a code injection risk by using the Function constructor: in the FunctionExpression branch, it reconstructs and executes code via `Function(keys.join(', '), 'return ' + unparse(node)).apply(null, vals);`. This is equivalent in power to eval() and will execute whatever AST is provided, so if an attacker can control the AST or vars, they can inject arbitrary code. The existing mitigations (unsafe property blocking and function-method access restriction) help prevent some common escape routes but do not fully neutralize the inherent code injection risk of using new Function() on untrusted AST input."
+        }
+      }
+    ]
+  },
+  "js-yaml": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code explicitly removes older, separate 'safe' APIs (safeLoad, safeLoadAll, safeDump) and replaces them with wrappers that throw an error instructing users to use load/loadAll/dump, which are described as 'now safe by default'. This indicates a deliberate design change to make the primary parsing/dumping functions use safer implementations internally, reducing the risk of code execution via YAML content. Beyond this, the shown file does not use eval, Function, string-based setTimeout/setInterval, child_process, or dynamic import/require based on user input, and only performs static requires, which also helps avoid common code injection vectors in this module entry point."
+        }
+      }
+    ]
+  },
+  "hot-formula-parser": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation":"yes — the parser uses a dedicated grammar parser (GrammarParser) to parse formula expressions rather than directly executing JavaScript with eval() or Function(). It also restricts execution to explicitly registered custom functions via this.functions and otherwise dispatches operations through the predefined evaluateByOperator. Variables are stored in Object.create(null), avoiding inherited properties, and errors are caught and converted into controlled parser errors. These mechanisms constrain formula evaluation to the parser's supported grammar and registered operations rather than arbitrary JavaScript code execution. "
+        }
+      }
+    ]
+  },
+  "safer-eval": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "This code implements several explicit mitigations around dynamic code execution using Node's vm module. Instead of using eval() or new Function(), it uses vm.runInContext with a dedicated, sandboxed context created via vm.createContext, which isolates evaluated code from the main Node.js global environment. The createContext() helper (from ./common) is used to construct a restricted base context that defines disallowed objects, and allow(context, __context) selectively copies only allowed properties into that sandbox, effectively implementing an allowlist of globals available to untrusted code. Before execution, the code is wrapped in a strict-mode IIFE, further constraining behavior. Additionally, Object.constructor is overridden inside the sandboxed code (Object.constructor = function () {};), which is a hardening step intended to prevent certain prototype-constructor based escape techniques. The runInContext method also validates that the input is a string (throwing a TypeError otherwise), which prevents non-string objects from being passed directly into vm.runInContext. Together, these measures replace raw eval with a sandboxed vm context, restrict accessible globals via an allowlist, and apply minor hardening inside the executed code, all of which are explicit mitigations against code injection risks inherent in evaluating arbitrary JavaScript."
+        }
+      }
+    ]
+  },
+  "serialize-to-js": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code avoids direct dynamic code execution primitives such as eval(), new Function(), setTimeout/setInterval with string arguments, vm module usage, child_process, or dynamic import/require based on user input. Instead, it constructs JavaScript source as strings using controlled logic and helper utilities. For functions, it calls source.toString() and then passes the result through utils.saferFunctionString() (unless opts.unsafe is explicitly set), which is clearly intended as a sanitization/mitigation step to make function stringification safer before it is embedded into serialized output. For strings and other values, it uses utils.quote() to escape characters (by default including <, >, and /) to reduce the risk of breaking out of string literals or injecting HTML/script when the serialized output is embedded in a page. The presence of the opts.unsafe flag, which must be explicitly enabled to disable these escapes, further indicates a default-safe posture against code/HTML injection in the generated serialization."
+        }
+      }
+    ]
+  },
+  "djv": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The provided code avoids direct use of eval(), new Function(), and string-based setTimeout/setInterval, and instead uses JSON.parse for configuration import/export, which is a safer alternative to eval for structured data. Dynamic behavior (schema compilation, function restoration) is delegated to helper modules (./utils/template, ./utils/state, ./utils/environment, ./utils/formats, and @korzio/djv-draft-04) rather than implemented inline here. Within this file, no child_process, vm, or dynamic import/require based on user input is present; the only dynamic require is a fixed string ('@korzio/djv-draft-04'), which is not user-controlled. Error handlers and formatters are accepted as functions or strings, but this file only stores them and passes them to utilities; it does not itself execute them via eval-like primitives. Thus, in this specific file, the main mitigations are: (1) use of JSON.parse instead of eval for config; (2) absence of direct dynamic code execution APIs; and (3) no user-controlled module loading or shell command construction. Note that the actual safety of the overall system still depends heavily on how restore(), generate(), expression, and related utilities implement code generation and execution in their respective modules."
+        }
+      }
+    ]
+  },
+  "mathjs": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation":"yes — the code contains explicit security mitigations against unsafe property/method access that can contribute to code or prototype-based injection. It restricts property access to plain objects/arrays, uses a whitelist for safe native properties (length, name), and rejects properties inherited from Object.prototype or Function.prototype, including dangerous properties such as constructor, call, and apply. It similarly validates methods using isSafeMethod, whitelisting only specific native methods (toString, valueOf, toLocaleString) and rejecting unsafe inherited methods. getSafeProperty, setSafeProperty, and getSafeMethod throw errors when access is not permitted. These checks prevent attacker-controlled property names from reaching dangerous inherited properties or function capabilities. However, this is a property-access/prototype-pollution mitigation rather than a direct Code Injection mitigation: the snippet contains no eval, Function, shell execution, or other code-generation API."
+        }
+      }
+    ]
+  },
+  "node-rules": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code does not use eval(), new Function(), the vm module, child_process, or string-based setTimeout/setInterval, which avoids the primary dynamic code execution vectors for code injection. It relies on direct function references (rule.condition and rule.consequence are called as functions via .call) rather than constructing code from strings. JSON-like cloning is done via lodash.clonedeep instead of eval-based parsing. The nextTick helper uses process.nextTick or setTimeout with a function callback, not a string, further avoiding string-evaluated execution. These design choices collectively mitigate typical JavaScript code injection risks by not exposing any dynamic code evaluation surface."
+        }
+      }
+    ]
+  },
+  "is-my-json-valid": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "{\n  \"mitigation\": \"The code uses dynamic code generation via the `generate-function` module, but it applies several important mitigations that reduce direct code injection risk:\\n\\n1. No use of `eval`, `Function` constructor, or string-based `setTimeout`/`setInterval` is present. Dynamic code execution is centralized through `genfun` (`generate-function`), which builds a function from controlled templates rather than arbitrary user strings.\\n\\n2. User-controlled data (the JSON schema and the data being validated) is not injected into the generated code as raw code tokens. Where schema-derived values are incorporated into generated code, they are first serialized with `JSON.stringify`, e.g.:\\n   - `formatName(field)` uses `JSON.stringify(field)` and only performs a controlled replacement of bracketed placeholders that must match previously allocated symbol names; if not, it throws `Unreplaceable`.\\n   - Enum comparisons and error messages use `JSON.stringify(e)` and `JSON.stringify(msg)` so that values become string literals in the generated code, not executable code.\\n   - Numeric constraints (`minimum`, `maximum`, `multipleOf`, etc.) are inserted via `%d` formatting, which expects numbers, not arbitrary strings.\\n\\n3. Property access paths are generated via the `generate-object-property` module (`genobj`), which safely constructs property access expressions from property names instead of naive string concatenation. This prevents property names from breaking out of the expression context.\\n\\n4. Regular expressions from the schema (`pattern`, `patternProperties`) are compiled with `new RegExp(p)` and then stored in the `scope` object passed to `toFunction`. The generated code only references these pre-constructed RegExp objects by symbol name (e.g., `pattern1.test(...)`), so the pattern text itself is not injected as code.\\n\\n5. External schema references (`$ref`) are resolved via the `get` function using `jsonpointer.get` and a provided `additionalSchemas` object. The resolved subschemas are compiled recursively, but again only through the same controlled code-generation path; `$ref` values are not directly interpolated into code.\\n\\n6. The only dynamic function creation is `validate = validate.toFunction(scope)` from `generate-function`. All arguments to the internal `validate(...)` builder are static format strings with controlled substitutions (numbers,"
+        }
+      }
+    ]
+  }
+}

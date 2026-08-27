@@ -1,0 +1,487 @@
+{
+  "date-and-time": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex-hardening - replaced regex containing catastrophic backtracking with safer version"
+        }
+      }
+    ]
+  },
+  "amqp-match": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "replaces generic regex that was vulnerable with multiple more specific regexes based on condition"
+        }
+      }
+    ]
+  },
+  "postcss": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex-hardening - replaced old regex with improved"
+        }
+      }
+    ]
+  },
+  "prompts": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex-hardening - replaced old regex with improved"
+        }
+      }
+    ]
+  },
+  "ramda": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The patch improves the trim() function’s Unicode whitespace handling. The old version recognized only a limited set of whitespace characters. The new version expands the ws list to include additional Unicode whitespace characters"
+        }
+      }
+    ]
+  },
+  "rgb2hex": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "improved input validation and hardened regex"
+        }
+      }
+    ]
+  },
+  "sshpk": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - replaced old regex with improved"
+        }
+      }
+    ]
+  },
+  "trim-off-newlines": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - The patch replaces a potentially backtracking-heavy regex for trimming CR/LF characters with a simple character-class regex and explicit JavaScript processing, reducing regex complexity and improving resistance to pathological inputs."
+        }
+      }
+    ]
+  },
+  "fresh": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The patch removes regex-based parsing and replaces it with linear character-by-character parsing, reducing the risk of excessive regex processing on attacker-controlled HTTP headers."
+        }
+      }
+    ]
+  },
+  "dirty-json": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Regex hardening - Specifically because the quoted-string regex was restructured to avoid the old nested repetition pattern"
+        }
+      }
+    ]
+  },
+  "remove-markdown": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - The patch replaces several potentially ambiguous/backtracking-heavy Markdown regexes with more constrained patterns, particularly the horizontal-rule and emphasis expressions, reducing the potential for pathological regex processing."
+        }
+      }
+    ]
+  },
+  "locutus": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - The code avoids ReDoS risk by using only simple, linear-time regular expressions and by bounding input length before regex use. The IPv4 pattern /^(?:\\d{1,3}(?:\\.|$)){4}/ has fixed, small repetition counts and no nested or ambiguous quantifiers, so it does not allow catastrophic backtracking. For IPv6, the code first enforces a maximum input length (a.length > 39 returns false) and then uses a simple hex-validation regex /^[\\da-f]{1,4}$/i on short substrings produced by split operations, again with no nested quantifiers or overlapping alternations. No complex or potentially exponential regex constructs are applied to unbounded user input, so the implementation inherently mitigates ReDoS in this context."
+        }
+      }
+    ]
+  },
+  "clean-css": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - replaced old regex with improved"
+        }
+      }
+    ]
+  },
+  "email-existence": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Input validation - checks user provided ip to see whether it falls below a particular length, if yes then regex is processed if not it throws"
+        }
+      }
+    ]
+  },
+  "path-parse": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Regex hardening - replaces old vulnerable regex with new one"
+        }
+      }
+    ]
+  },
+  "ansi-html": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - remove unecessary backtracking"
+        }
+      }
+    ]
+  },
+  "ssri": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - Bounded regex patterns that reduce ambiguous/unbounded matching paths, making maliciously crafted SRI strings less capable of triggering excessive regex processing."
+        }
+      }
+    ]
+  },
+  "tmpl": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - The mitigation restricts the regex's matching character set from arbitrary characters to characters excluding {, reducing ambiguous backtracking paths and mitigating Regular Expression Denial of Service (ReDoS)."
+        }
+      }
+    ]
+  },
+  "colors-cli": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - The mitigation restructures and constrains the regex's repeated groups to reduce ambiguous matching and excessive backtracking, preventing specially crafted input from causing Regular Expression Denial of Service (ReDoS)."
+        }
+      }
+    ]
+  },
+  "moment": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - remove unecessary backtracking"
+        }
+      }
+    ]
+  },
+  "forwarded": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Input Parsing Hardening, specifically replacing a regular-expression-based header parser with a manual character-by-character parser."
+        }
+      }
+    ]
+  },
+  "millisecond": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Input validation - The code implements an explicit ReDoS mitigation by bounding the length of user-controlled input before applying the potentially vulnerable regular expression. Specifically, before executing `regex.exec(ms)`, it checks `if (ms.length > 10000 || !(match = regex.exec(ms))) return 0;`. This ensures that excessively long strings (which are the primary driver of catastrophic backtracking cost) are rejected early and never passed to the regex engine. The inline comment also documents that this is a ReDoS mitigation referencing a known advisory. No other mitigations (such as alternative regex engines, timeouts, or static regex safety tools) are present, but the length check is a concrete and effective defense against ReDoS for this pattern."
+        }
+      }
+    ]
+  },
+  "terminal-kit": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - reducing regex backtracking by making the closing delimiter optional, so malformed/incomplete input cannot cause excessive regex processing."
+        }
+      }
+    ]
+  },
+  "glob-parent": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening → ReDoS mitigation, specifically by reducing regex complexity and avoiding excessive backtracking."
+        }
+      }
+    ]
+  },
+  "html-parse-stringify2": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening → ReDoS mitigation, by reducing unnecessary nested/ambiguous repetition and therefore limiting regex backtracking."
+        }
+      }
+    ]
+  },
+  "markdown-it": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regexp hardening → ReDoS mitigation, specifically elimination of regex-based processing in favor of deterministic character-by-character scanning."
+        }
+      }
+    ]
+  },
+  "nth-check": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening → ReDoS mitigation, specifically complete regex elimination and replacement with a linear-time manual parser."
+        }
+      }
+    ]
+  },
+  "charset": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - regex resource-consumption mitigation by bounding previously unbounded regex quantifiers."
+        }
+      }
+    ]
+  },
+  "ms": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "input validation - The code includes an explicit input-length bound before applying the regular expression. In function `parse(str)`, the string is converted with `str = String(str);` and then checked with `if (str.length > 100) { return; }`. This prevents the regex `/^(-?(?:\\d+)?\\.?\\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i` from ever running on arbitrarily long, attacker-controlled input. Although the pattern itself is not structured with nested quantifiers or ambiguous alternations that typically cause catastrophic backtracking, the length cap to 100 characters is a concrete ReDoS mitigation because it bounds the worst-case work the regex engine can perform on user input."
+        }
+      }
+    ]
+  },
+  "ua-parser-js": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "input validation - The code applies a hard maximum length to user-controlled input before any regex processing. In the UAParser constructor, setUA() is used to assign the user agent string, and it calls trim(ua, UA_MAX_LENGTH) with UA_MAX_LENGTH set to 500. This ensures that any user-supplied UA string (including values coming from headers['user-agent']) is truncated to at most 500 characters before being passed into rgxMapper and the large regex map. Bounding the input length is an effective mitigation against ReDoS, because even if some of the complex regular expressions have backtracking-heavy structure, the worst-case runtime is capped by the fixed maximum input size. No other explicit ReDoS mitigations (such as safe-regex linters, RE2 usage, or regex timeouts) are present, but the input-length bound is an active defense that limits the impact of catastrophic backtracking."
+        }
+      }
+    ]
+  },
+  "papaparse": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - Regex hardening against Regular Expression Denial of Service (ReDoS), by eliminating ambiguous overlapping quantifiers and reducing catastrophic/excessive backtracking."
+        }
+      }
+    ]
+  },
+  "is-email": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "input validation - The code bounds the input length before applying the regex by returning false when string.length > 320. This limits the maximum work the regex engine can perform on user-controlled input and mitigates potential ReDoS impact even if the pattern had backtracking risks. No other explicit ReDoS defenses (such as safe-regex linters, timeouts, or alternative regex engines) are present."
+        }
+      }
+    ]
+  },
+  "validator": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex removal - Regex removal / ReDoS hardening through replacement of the unbounded \\s+$ regex with a linear character scan."
+        }
+      }
+    ]
+  },
+  "trim": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - The code avoids using any complex or ambiguous regular expressions that could cause catastrophic backtracking. The only regex patterns used are /^\\s\\s*/ and /\\s/, which are simple, linear-time whitespace matches without nested quantifiers or overlapping alternations. Additionally, the right-trim implementation uses a loop with a simple /\\s/ test per character instead of a large, potentially dangerous regex over the whole string. No other explicit ReDoS-specific mechanisms (timeouts, RE2, input length limits, or regex linters) are present, but the simplicity of the patterns themselves effectively mitigates ReDoS risk in this context."
+        }
+      }
+    ]
+  },
+  "truncate": {
+    "mitigation": "[chunk 1] The code bounds the length of user-controlled input processed by the URL_REGEX in two ways: (1) It stops using the regex once URL_REGEX.lastIndex reaches maxLength + 3000, effectively capping how far into the string the regex will scan; (2) It limits the local-part and domain components of email addresses to at most 300 characters each via quantifiers like {1,300}, preventing unbounded repetition inside the pattern. These constraints reduce the risk of catastrophic backtracking over very long inputs, even though the native JS regex engine is used and no explicit timeout or external safe-regex tooling is present.",
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening + input length validation - The code bounds the length of user-controlled input processed by the URL_REGEX in two ways: (1) It stops using the regex once URL_REGEX.lastIndex reaches maxLength + 3000, effectively capping how far into the string the regex will scan; (2) It limits the local-part and domain components of email addresses to at most 300 characters each via quantifiers like {1,300}, preventing unbounded repetition inside the pattern. These constraints reduce the risk of catastrophic backtracking over very long inputs, even though the native JS regex engine is used and no explicit timeout or external safe-regex tooling is present."
+        }
+      }
+    ]
+  },
+  "html-parse-stringify": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - regex hardening / REDoS mitigation through removal of redundant unbounded quote quantifiers in the HTML tag-matching regex."
+        }
+      }
+    ]
+  },
+  "highlight.js": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex-hardening - replaced regex containing catastrophic backtracking with safer version"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Regex Hardening & Architecture Refactoring - The NEW file resolves ReDoS by eliminating catastrophic backtracking in query processing. First, it hardens numeric regular expressions—replacing overlapping optional quantifiers like \\d*\\.?\\d+ with non-ambiguous patterns like (\\d+|\\d+\\.\\d+|\\.\\d+) to prevent exponential matching paths on malformed inputs. Second, it decouples parsing from execution. The OLD version used an inefficient string-slicing backtracking loop (doMatch/find) that repeatedly evaluated regexes against substrings. The NEW version delegates query parsing to a dedicated, safer parser (parseWithoutCache) and caches results, preventing execution-phase ReDoS attacks entirely"
+        }
+      }
+    ]
+  },
+  "urlregex": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "uses 3rd party library - The code imports and uses the RE2 library (`const RE2 = require('re2');`) and passes it into `urlRegex(RE2)`. RE2 is a linear-time regular expression engine that avoids catastrophic backtracking by design. By using RE2 instead of the native JavaScript regex engine for URL-related matching, the code mitigates ReDoS risks even when processing user-controlled input, since RE2 enforces predictable, non-exponential runtime behavior for regex evaluation."
+        }
+      }
+    ]
+  },
+  "natural": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex hardening - The code uses only two simple, linear-time regular expressions: `/\\s+/g` to collapse runs of whitespace into a single space, and `/^\\s+|\\s+$/g` to trim leading and trailing whitespace. These patterns do not contain nested or overlapping quantifiers, ambiguous alternations, or complex grouping, so they are not susceptible to catastrophic backtracking. No additional ReDoS-specific defenses (such as regex timeouts, RE2-based engines, input length limits, or regex linters) are present, but the chosen patterns themselves are safe and effectively avoid ReDoS risk in this context."
+        }
+      }
+    ]
+  },
+  "chrono-node": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "regex-hardening - replaced regex containing catastrophic backtracking with safer version"
+        }
+      }
+    ]
+  },
+  "hosted-git-info": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "input validation - The new implementation strengthens Git URL handling by centralizing protocol definitions and parsing through dedicated fromUrl and parseUrl modules. Supported protocols are explicitly mapped in #protocols, including SSH, HTTP, HTTPS, and Git-specific variants, reducing reliance on loosely interpreted URL schemes. It also uses the standard URL API in unknownHostedUrl() to safely extract and reconstruct hostname and pathname components instead of manually parsing URLs with complex regular expressions. Invalid URLs are caught and rejected by returning null. Repository paths are normalized by removing a trailing .git, while host information is resolved against registered Git hosts. This improves URL validation and parsing robustness."
+        }
+      }
+    ]
+  },
+  "ethers": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "input validation - This limits the size of the multiplier and the amount of arbitrary-precision arithmetic performed by FixedNumber. Without this restriction, an attacker could supply excessively large decimal values, causing large strings and expensive BigNumber calculations to be generated, potentially consuming significant CPU and memory. The mitigation therefore constrains attacker-controlled numeric parameters to a reasonable range, reducing the risk of computational/resource exhaustion while preserving normal fixed-point functionality."
+        }
+      }
+    ]
+  },
+    "d3-color": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "input validation + regex hardening : The fix strengthens the regular expressions used to parse CSS color values. In the older version, numeric patterns were relatively permissive and allowed optional signs and decimal representations in ways that could lead to inconsistent or unexpected parsing behavior. The updated version uses more explicit numeric patterns and requires commas between RGB, RGBA, HSL, and HSLA components. Additionally, the new implementation introduces centralized clamping functions (clampi, clampt, clampa, and clamph) to constrain color components and opacity to valid ranges before formatting. These changes make parsing and output handling more predictable, enforce stricter input validation, and reduce ambiguity when processing malformed or unusual color values."
+        }
+      }
+    ]
+  }
+}

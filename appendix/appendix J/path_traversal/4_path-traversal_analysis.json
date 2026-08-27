@@ -1,0 +1,62 @@
+{
+    "angular-http-server":{
+       "mitigation":"The function implements multiple Path Traversal defenses: it requires an absolute basePath; rejects user input containing '../'; optionally restricts URLs to a configured baseHref; joins the input with basePath; and verifies the resulting path starts with basePath, preventing traversal outside the intended directory. It also rejects paths ending in the platform separator to prevent directory access. The path library is injectable via pathLib, so the mitigation relies on a globally supplied/mutable path-like implementation rather than directly using the immutable built-in path object. No symlink resolution (fs.realpath) is performed."
+    },
+    "crud-file-server":{
+        "mitigation":"The code has an active Path Traversal mitigation in cleanUrl(): it URL-decodes the input and repeatedly removes '..' substrings, intended to prevent traversal such as a/../../../c/d. It is applied to the request pathname and also to the POST rename parameter. The vpath check additionally restricts the URL to the configured virtual path. However, there is no canonical path resolution, base-directory containment check, or symlink validation, so the mitigation is incomplete. cleanUrl is a locally defined mutable function, and is directly relied upon as the sanitization mechanism."
+    },
+    "datachannel-client":{
+        "mitigation" : ""
+    },
+    "fakelearnnodejs":{
+        "mitigation" : ""
+    },
+    "fsk-server":{
+        "mitigation" : ""
+    },
+    "gfm-srv":{
+        "mitigation" : ""
+    },
+    "glance":{
+        "mitigation" : ""
+    },
+    "hangersteak":{
+        "mitigation" : ""
+    },
+    "http-file-server":{
+        "mitigation" : ""
+    },
+    "http-live-simulator":{
+        "mitigation" : ""
+    },
+    "m-server":{
+        "mitigation" : ""
+    },
+    "node-simple-router":{
+        "mitigation" : ""
+    },
+    "pico-static-server":{
+        "mitigation" : ""
+    },
+    "public":{
+        "mitigation" : ""
+    },
+    "rollup-plugin-serve":{
+        "mitigation" : ""
+    },
+    "rollup-plugin-serve-favicon":{
+        "mitigation" : ""
+    },
+    "serve-here.js":{
+        "mitigation" : ""
+    },
+    "servey":{
+        "mitigation" : ""
+    },
+    "static-html-server":{
+        "mitigation" : ""
+    },
+    "tinyserver2":{
+        "mitigation" : ""
+    }
+}

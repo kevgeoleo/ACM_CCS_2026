@@ -1,0 +1,230 @@
+﻿Runtime,Version,Bug type,Bug title,Bug URL,Submission Date,Resolved Date,Status,Labels,Confirmed
+Bun,1.3.9,Cross runtime,CJS require() of failing ESM produces uninitialized exports on import(),https://github.com/oven-sh/bun/issues/27287,20-02-2026,27-04-2026,Closed as completed,bug,✓
+Bun,1.3.10,Cross runtime,Bun does not support module.registerHooks,https://github.com/oven-sh/bun/issues/27369,23-02-2026,,Open,bug,✓
+Deno,2.6.10,Cross runtime,CJS require() of throwing ESM module is not synchronous (Node compatibility mismatch),https://github.com/denoland/deno/issues/32279,23-02-2026,27-02-2026,Closed as completed,"Bug, node:compat",✓
+Bun,1.3.10,Cross runtime,node:test async tests exceeding 5s timeout fail in Bun but pass in Node,https://github.com/oven-sh/bun/issues/27422,25-02-2026,,Open,bug,✓
+Bun,1.3.10,Cross runtime,.cjs file using import.meta does not throw in Bun (Node incompatible),https://github.com/oven-sh/bun/issues/27425,25-02-2026,01-03-2026,Closed as duplicate,bug,✓
+Deno,2.6.10,Cross runtime,node:test top-level await test() pattern fails in Deno,https://github.com/denoland/deno/issues/32326,25-02-2026,13-05-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.10,Cross runtime,AsyncLocalStorage context is not preserved inside stream.finished callback,https://github.com/oven-sh/bun/issues/27428,25-02-2026,26-02-2026,Closed as completed,bug,✓
+Deno,2.6.10,Cross runtime,AsyncLocalStorage context is not preserved inside stream.finished callback,https://github.com/denoland/deno/issues/32327,25-02-2026,02-03-2026,Closed as completed,"node compat, bug",✓
+Node,24.13.1,Regression,Regression bug: AbortSignal.any() causing memory leak on long lived parent signal,https://github.com/nodejs/node/issues/62363,21-03-2026,02-04-2026,Closed as completed,abortcontroller,✓
+Deno,2.7.7,Cross runtime ,console.log throws TypeError on circular structures when Symbol.toStringTag getter throws (quick-lru) ,https://github.com/denoland/deno/issues/32894,21-03-2026,23-03-2026,Closed as completed,bug,✓
+Deno,2.7.7,Cross runtime ,Buffer.concat truncates buffers larger than 4GB ,https://github.com/denoland/deno/issues/32895,21-03-2026,23-03-2026,Closed as completed,"bug, node compat",✓
+Deno,2.7.7,Cross runtime ,AbortSignal.any() causing memory leak on long lived parent signal ,https://github.com/denoland/deno/issues/32898,21-03-2026,23-03-2026,Closed as completed,"bug, web",✓
+Deno,2.7.7,Cross runtime ,structuredClone serializing a non-serializable object,https://github.com/denoland/deno/issues/32914,22-03-2026,25-04-2025,Closed as completed,"bug, ext/web",✓
+Bun,1.3.11,Cross runtime ,fs.glob does not support options.withFileTypes yet.,https://github.com/oven-sh/bun/issues/28429,22-03-2026,26-03-2026,Closed as duplicate,bug,✓
+Deno,2.7.7,Cross runtime ,process.setUncaughtExceptionCaptureCallback not implemented,https://github.com/denoland/deno/issues/32915,22-03-2026,23-03-2026,Closed as completed,"bug, node compat",✓
+Bun,1.3.11,Cross runtime ,[streams] Uncatchable error when piping object-mode source into byte-mode destination,https://github.com/oven-sh/bun/issues/28431,22-03-2026,23-03-2026,Closed as completed,bug,✓
+Bun,1.3.11,Cross runtime ,structuredClone with transferable ReadableStream throws DataCloneError,https://github.com/oven-sh/bun/issues/28434,22-03-2026,,Open,bug,✓
+Deno,2.7.7,Cross runtime ,in operator in vm.runInContext does not see prototype properties,https://github.com/denoland/deno/issues/32921,22-03-2026,25-04-2026,Closed as completed,"bug, node compat",✓
+Deno,2.7.7,Cross runtime ,env-file: inner quotes and escaped newlines not parsed correctly,https://github.com/denoland/deno/issues/32928,23-03-2026,25-03-2026,Closed as completed,"bug, node compat",✓
+Deno,2.7.7,Cross runtime ,test.run not implemented in Deno,https://github.com/denoland/deno/issues/32929,23-03-2026,,Open,"bug, node compat",✓
+Deno,2.7.7,Cross runtime ,util.stripVTControlCharacters does not remove OSC 8 hyperlinks ,https://github.com/denoland/deno/issues/32931,23-03-2026,25-03-2026,Closed as completed,"bug, node compat",✓
+Deno,2.7.7,Cross runtime ,fs.watch misses change event for immediate write after watcher setup,https://github.com/denoland/deno/issues/32935,23-03-2026,01-04-2026,Closed as completed,"bug, node compat",✓
+Bun,1.3.11,Cross runtime ,worker_threads + inspector.Session Profiler.stop returns null profile in Bun,https://github.com/oven-sh/bun/issues/28472,23-03-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime ,repl.start not implemented in Bun,https://github.com/oven-sh/bun/issues/28478,23-03-2026,,Open,bug,✓
+Deno,2.7.7,Cross runtime ,node:http2: HTTP/2 client connection hangs (no response/end events),https://github.com/denoland/deno/issues/32937,23-03-2026,17-04-2026,Closed as completed,"bug, node compat",✓
+Bun,1.2.23,Cross runtime,loadEnvFile from node:process not working in Bun ,https://github.com/oven-sh/bun/issues/23345,07-10-2025,,Open,node:process,✓
+Bun,1.3.11,Cross runtime,import() silently swallows errors from nested module imports (data URL case) ,https://github.com/oven-sh/bun/issues/28483,23-03-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,node:test: assertion failures inside async callback (done-style test) are ignored and test incorrectly passes,https://github.com/oven-sh/bun/issues/28501?reload=1,24-03-2026,,Open,bug,✓
+Deno,2.7.7,Cross runtime ,node:test: async errors in callback-style tests are not attributed to the test and cause global uncaught failure ,https://github.com/denoland/deno/issues/32948,24-03-2026,10-05-2026,Closed as completed,node compat,✓
+Bun,1.3.11,Cross runtime,Importing unsupported attributes should throw [ERR_IMPORT_ATTRIBUTE_UNSUPPORTED] ,https://github.com/oven-sh/bun/issues/28510?reload=1,24-03-2026,,Open,bug,✓
+Deno,2.7.7,Cross runtime ,MockTimers not implemented in Deno,https://github.com/denoland/deno/issues/32987,25-03-2026,18-06-2026,Closed as completed,node compat,✓
+Deno,2.7.7,Cross runtime ,node:test/reporters not implemented in Deno,https://github.com/denoland/deno/issues/32988,25-03-2026,25-03-2026,Closed as duplicate,,✓
+Node,24.13.1,Regression,OOM Error When Creating Many ShadowRealms with Heap Snapshots in Node.js ,https://github.com/nodejs/node/issues/62433,25-03-2026,,Open,,
+Bun,1.3.11,Cross runtime,Bun does not show coverage info when using node:test with --coverage option,https://github.com/oven-sh/bun/issues/28620,28-03-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,pathToFileURL mishandles Windows UNC extended-length paths on Linux,https://github.com/oven-sh/bun/issues/28622,28-03-2026,,Open,bug,✓
+Deno,2.7.9,Cross runtime ,node:http.createServer does not trigger HPE_HEADER_OVERFLOW for oversized headers,https://github.com/denoland/deno/issues/33060,29-03-2026,17-04-2026,Closed as completed,node compat,✓
+Bun,1.3.11,Cross runtime,http.createServer destroys socket instead of sending 431 response,https://github.com/oven-sh/bun/issues/28641,29-03-2026,17-06-2026,Closed as completed,bug,✓
+Bun,1.3.11,Cross runtime,worker_threads behavior different from node,https://github.com/oven-sh/bun/issues/28643,29-03-2026,,Open,bug,✓
+Deno,2.7.9,Cross runtime ,worker_threads behavior different from node,https://github.com/denoland/deno/issues/33061,29-03-2026,,Open,node compat,✓
+Bun,1.3.11,Cross runtime,"fs.readFile does invoke the callback with an Error, but the .stack property is missing on the async error",https://github.com/oven-sh/bun/issues/28644,29-03-2026,02-04-2026,Closed as duplicate,bug,✓
+Deno,2.7.9,Cross runtime ,http.get throws Error: Not implemented:,https://github.com/denoland/deno/issues/33062,29-03-2026,17-04-2026,Closed as completed,node compat,✓
+Bun,1.3.11,Cross runtime,assert.deepStrictEqual incorrectly fails for Proxy-wrapped arrays,https://github.com/oven-sh/bun/issues/28647,29-03-2026,02-04-2026,Closed as duplicate,,✓
+Bun,1.3.11,Cross runtime,Bun crashes when worker throws inside uncaughtException handler (worker_threads) ,https://github.com/oven-sh/bun/issues/28648?reload=1,29-03-2026,18-04-2026,Closed as completed,crash,✓
+Deno,2.7.9,Cross runtime ,http2.createSecureServer throws error due to missing setupConnectionsTracking,https://github.com/denoland/deno/issues/33067,30-03-2026,18-04-2026,Closed as completed,node compat,✓
+Bun,1.3.11,Cross runtime,http2.createSecureServer({ allowHTTP1: true }) returns empty response over HTTPS,https://github.com/oven-sh/bun/issues/28656,30-03-2026,,Open,bug,✓
+Deno,2.7.9,Cross runtime ,http2.createSecureServer gives empty response ,https://github.com/denoland/deno/issues/33072,30-03-2026,18-04-2026,Closed as completed,"bug, node compat",✓
+Bun,1.3.11,Cross runtime,Assigning a hostname with port 80 to URL.host will not override the existing port,https://github.com/oven-sh/bun/issues/28661,30-03-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Bun does not handle process._fatalException inside a domain ,https://github.com/oven-sh/bun/issues/28664,30-03-2026,03-04-2026,Closed as duplicate,bug,✓
+Bun,1.3.11,Cross runtime,Bun does not throw when using invalid Syntax within vm.Script,https://github.com/oven-sh/bun/issues/28666,30-03-2026,,Open,bug,✓
+Deno,2.7.9,Cross runtime ,process.send() message may be lost if process.exit() is called immediately (flaky test),https://github.com/denoland/deno/issues/33085,30-03-2026,,Open,node compat,✓
+Bun,1.3.11,Cross runtime,Bun does not support aes-128-ecb even though its in list of supported ciphers,https://github.com/oven-sh/bun/issues/28671,30-03-2026,,Open,bug,✓
+Deno,2.7.9,Cross runtime ,fs.readFileSync returns 0-length buffer for sparse files ,https://github.com/denoland/deno/issues/33086,30-03-2026,08-04-2026,Closed as completed,"bug, node compat",✓
+Node,"24.13.1, 25.8.1",Regression,Passing large value for mode option in fs.createWriteStream results in crash,https://github.com/nodejs/node/issues/62516,30-03-2026,,Open,fs,✓
+Deno,2.7.9,Cross runtime ,req.socket.bytesRead is undefined in node:http server,https://github.com/denoland/deno/issues/33090,31-03-2026,17-04-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.11,Cross runtime,req.socket.bytesRead returns 0 when using node:http server ,https://github.com/oven-sh/bun/issues/28709,31-03-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,HTTP/2 server push streams disabled in Bun,https://github.com/oven-sh/bun/issues/28712,31-03-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,http2.connect fails with IP address due to certificate verification (UNABLE_TO_VERIFY_LEAF_SIGNATURE) ,https://github.com/oven-sh/bun/issues/28716,31-03-2026,,Open,bug,✓
+Deno,2.7.9,Cross runtime,process.argv[0] does not return path to executable in Deno,https://github.com/denoland/deno/issues/33095,31-03-2026,31-03-2026,Closed as completed,,✓
+Deno,2.7.9,Cross runtime,crypto.createCipheriv().update does not throw on large input (2**31 - 1),https://github.com/denoland/deno/issues/33096,31-03-2026,08-04-2026,Closed as completed,"node compat, bug",✓
+Deno,2.7.9,Cross runtime,fs.watch with recursive:true does not trigger events in node:fs,https://github.com/denoland/deno/issues/33102,31-03-2026,10-05-2026,Closed as completed,"node compat, bug",✓
+Deno,2.7.9,Cross runtime,fs.watch throws uncatchable error when given non-existent file as parameter ,https://github.com/denoland/deno/issues/33103,31-03-2026,10-05-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.11,Cross runtime,Error.captureStackTrace returns truncated stack trace,https://github.com/oven-sh/bun/issues/28734,31-03-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Error importing ES module with an encoded comma in the URL,https://github.com/oven-sh/bun/issues/28745,01-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,bun run prints help instead of executing .cjs scripts that use child_process.spawn,https://github.com/oven-sh/bun/issues/28747,01-04-2026,05-04-2026,Closed as duplicate,bug,✓
+Bun,1.3.11,Cross runtime,[http] Request hangs after 100-continue response in Bun,https://github.com/oven-sh/bun/issues/28749,01-04-2026,05-04-2026,Closed as duplicate,bug,✓
+Deno,2.7.9,Cross runtime,tty.ReadStream throws Error,https://github.com/denoland/deno/issues/33117,01-04-2026,01-04-2026,Closed,"node compat, bug",✓
+Bun,1.3.11,Cross runtime,url.format() in Bun does not decode auth credentials correctly after url.parse(),https://github.com/oven-sh/bun/issues/28751,01-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,AbortSignal.timeout() + util.aborted() causes unbounded memory growth,https://github.com/oven-sh/bun/issues/28756,01-04-2026,14-04-2026,Closed as completed,bug,✓
+Deno,2.7.9,Cross runtime,AbortSignal.timeout() + util.aborted() causes unbounded memory growth,https://github.com/denoland/deno/issues/33125,01-04-2026,17-05-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.11,Cross runtime,cluster.send() loses socket handle when sending large messages,https://github.com/oven-sh/bun/issues/28759,01-04-2026,05-04-2026,Closed as duplicate,bug,✓
+Bun,1.3.11,Cross runtime,assert.deepEqual / deepStrictEqual does not throw for unequal Sets,https://github.com/oven-sh/bun/issues/28760,01-04-2026,,Open,bug,✓
+Deno,2.7.9,Cross runtime,HTTP server hangs on malformed chunked request (incomplete chunk not rejected),https://github.com/denoland/deno/issues/33135,02-04-2026,17-04-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.11,Cross runtime,HTTP server hangs on malformed chunked request (incomplete chunk not rejected),https://github.com/oven-sh/bun/issues/28775,02-04-2026,05-04-2026,Closed as duplicate,bug,✓
+Bun,1.3.11,Cross runtime,Worker accepts invalid file:// URL instead of throwing an error,https://github.com/oven-sh/bun/issues/28861,04-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,"pyodide.mjs throws Cannot determine runtime environment when run under Bun, even though it works in Node ",https://github.com/oven-sh/bun/issues/28864,04-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,fs.rmSync returns EFAULT instead of EISDIR when removing a directory without recursive,https://github.com/oven-sh/bun/issues/28958,07-04-2026,,Open,bug,✓
+Node,24.13.1,Cross runtime,fs.readSync does not validate invalid position type (accepts object instead of throwing),https://github.com/nodejs/node/issues/62638,08-04-2026,15-04-2026,Closed as completed,fs,✓
+Deno,2.7.11,Regression,ChildProcess.kill() does not indicate failure when process has already exited,https://github.com/denoland/deno/issues/33206,08-04-2026,18-04-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.11,Cross runtime,ChildProcess.kill() does not indicate failure when process has already exited,https://github.com/oven-sh/bun/issues/29001,08-04-2026,29-06-2026,Closed as completed,bug,✓
+Bun,1.3.11,Cross runtime,fs.readSync does not validate invalid position type (accepts object instead of throwing),https://github.com/oven-sh/bun/issues/29016,08-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,tty.WriteStream.prototype.isTTY missing,https://github.com/oven-sh/bun/issues/29019,08-04-2026,,Open,bug,✓
+Deno,2.7.11,Regression,"Deno.customInspect is not respected by console.log(""%o"", value) ",https://github.com/denoland/deno/issues/33216,08-04-2026,25-042026,Closed as completed,working as designed,
+Bun,1.3.11,Cross runtime,MessagePort missing removeListener method (Node.js EventEmitter incompatibility) ,https://github.com/oven-sh/bun/issues/29022?reload=1,08-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,assert.deepStrictEqual ignores prototype differences,https://github.com/oven-sh/bun/issues/29030,08-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Worker error event ignores preventDefault() and still terminates,https://github.com/oven-sh/bun/issues/29043,08-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,os.freemem() returns inconsistent values vs Node,https://github.com/oven-sh/bun/issues/29072,09-04-2026,10-04-2026,Closed,bug,✓
+Bun,1.3.11,Cross runtime,node:http2.createServer fails for h2c (cleartext HTTP/2),https://github.com/oven-sh/bun/issues/29073,09-04-2026,18-04-2026,Closed,bug,✓
+Bun,1.3.11,Cross runtime,"Response([1,2,3]).text() produces incorrect output (""123"" instead of ""1,2,3"")",https://github.com/oven-sh/bun/issues/29074,09-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Worker.terminate() in Bun behaviorally different from Node ,https://github.com/oven-sh/bun/issues/29077?reload=1,09-04-2026,13-04-2026,Closed as duplicate,bug,✓
+Bun,1.3.11,Cross runtime,Bun throws Error instead of AggregateError on Promise.reject within Promise.any ,https://github.com/oven-sh/bun/issues/29157,11-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Bun accepts TypeScript syntax (export enum) in data:application/javascript modules instead of throwing SyntaxError,https://github.com/oven-sh/bun/issues/29159,11-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,"fetch().body.getReader({ mode: ""byob"" }) throws instead of supporting Web Streams BYOB reader",https://github.com/oven-sh/bun/issues/29162,03-11-1979,,Closed as duplicate,bug,✓
+Bun,1.3.11,Cross runtime,Bun process does not exit after Tinypool destroy() completes (worker threads remain alive) ,https://github.com/oven-sh/bun/issues/29173,11-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Inconsistent validation of percent-encoded file URLs compared to Node.js,https://github.com/oven-sh/bun/issues/29174,11-04-2026,,Open,bug,✓
+Deno,2.7.11,Regression,nodejs-polars give different output in Deno compared to Node,https://github.com/denoland/deno/issues/33236,11-04-2026,16-04-2026,Closed as completed,node compat,✓
+Bun,1.3.11,Cross runtime,Very slow console.log on large sparse arrays compared to Node and Deno,https://github.com/oven-sh/bun/issues/29175,11-04-2026,13-05-2026,Closed as completed,bug,✓
+Deno,2.7.11,Regression,fs.readFile() on non-terminating sources never settles and can consume unbounded memory.,https://github.com/denoland/deno/issues/33237,11-04-2026,25-04-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.11,Cross runtime,fs.readFile() on non-terminating sources never settles and can consume unbounded memory.,https://github.com/oven-sh/bun/issues/29184,11-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Worker: self.close() is not defined ,https://github.com/oven-sh/bun/issues/29186,11-04-2026,,Open,bug,✓
+Deno,2.7.11,Regression,deno lint errors on process global ,https://github.com/denoland/deno/issues/33238,11-04-2026,25-04-2026,Closed as completed,working as designed,
+Deno,2.7.11,Regression,Client network socket disconnected before secure TLS connection was established,https://github.com/denoland/deno/issues/33242,11-04-2026,17-04-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.11,Cross runtime,signal-exit onExit callback not triggered in Bun during process shutdown ,https://github.com/oven-sh/bun/issues/29194,11-04-2026,15-04-2026,Closed as duplicate,bug,✓
+Bun,1.3.11,Cross runtime,fetch() does not throw when invalid values are passed,https://github.com/oven-sh/bun/issues/29195,11-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Decorators on accessor class fields fail to parse in Bun ,https://github.com/oven-sh/bun/issues/29197,11-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,Emscripten pthread-based WASM module fails to initialize in Bun while working in Node,https://github.com/oven-sh/bun/issues/29211,12-04-2026,,Open,bug,✓
+Bun,1.3.11,Cross runtime,"Bun does not emit ServerResponse ""close"" event on client disconnect during active HTTP response",https://github.com/oven-sh/bun/issues/29219,12-04-2026,16-04-2026,Closed as duplicate,bug,✓
+Bun,1.3.11,Cross runtime,Dynamic import resolves before module evaluation completes when using top-level await,https://github.com/oven-sh/bun/issues/29221,12-04-2026,27-04-2026,Closed as completed,bug,✓
+Bun,1.3.11,Cross runtime,Crash: ffi-napi call triggers unsupported libuv function (uv_thread_self) and aborts Bun,https://github.com/oven-sh/bun/issues/29223,12-04-2026,,Open,crash,✓
+Bun,1.3.11,Cross runtime,ReadableStreamBYOBReader from node:stream/web is not a native class in Bun ,https://github.com/oven-sh/bun/issues/29225,12-04-2026,15-04-2026,Closed as completed,bug,✓
+Bun,1.3.11,Cross runtime,Inconsistent IP version preference in Bun node:dns.lookup,https://github.com/oven-sh/bun/issues/29227,12-04-2026,,Open,bug,✓
+Deno,2.7.12,Cross runtime,Deno does not detect MongoMemoryServer export in npm:mongodb-memory-server,https://github.com/denoland/deno/issues/33257,13-04-2026,14-05-2026,Closed as completed,"node resolution, bug",✓
+Bun,1.3.11,Regression,npm package jsdoc throws error in Bun but not in Node,https://github.com/oven-sh/bun/issues/29253,13-04-2026,,Open,bug,✓
+Deno,2.7.12,Cross runtime,npm package jsdoc throws error in Deno but not in Node ,https://github.com/denoland/deno/issues/33258,13-04-2026,15-04-2026,Closed as duplicate,"node compat, bug",✓
+Bun,1.3.11,Regression,"File.type incorrectly appends charset parameter (e.g. ""text/plain;charset=utf-8"")",https://github.com/oven-sh/bun/issues/29257,13-04-2026,17-04-2026,Closed as duplicate,bug,✓
+Bun,1.3.11,Regression,Bun crashes when loading ffi-napi due to missing libuv support (uv_thread_self) ,https://github.com/oven-sh/bun/issues/29260,13-04-2026,,Open,bug,✓
+Deno,2.7.12,Cross runtime,node:crypto Hash.digest() throws ERR_CRYPTO_HASH_FINALIZED after stream.pipeline,https://github.com/denoland/deno/issues/33264,13-04-2026,25-04-2026,Closed as completed,"node compat, bug",✓
+Deno,2.7.12,Cross runtime,node:http Server does not inherit from node:net Server (instanceof mismatch vs Node.js),https://github.com/denoland/deno/issues/33288,15-04-2026,17-04-2026,Closed as completed,"node compat, bug",✓
+Deno,2.7.12,Cross runtime,crypto.verify throws Invalid PEM error on Deno,https://github.com/denoland/deno/issues/33291,16-04-2026,18-04-2026,Closed as completed,"node compat, bug",✓
+Bun,1.3.11,Regression,crypto.verify throws Invalid PEM error on Bun,https://github.com/oven-sh/bun/issues/29370,16-04-2026,,Open,bug,✓
+Deno,2.7.12,Cross runtime,spawnSync does not support Node-style FD-indexed stdio inheritance ,https://github.com/denoland/deno/issues/33340,21-04-2026,21-04-2026,Closed as completed,"bug, node compat",✓
+Deno,2.7.12,Cross runtime,nats npm package fails under Deno runtime with timeout during connection establishment ,https://github.com/denoland/deno/issues/33343,21-04-2026,21-04-2026,Closed as completed,,✓
+Deno,2.7.12,Cross runtime,node:tls server does not correctly negotiate ALPN via ALPNCallback (returns false instead of selected protocol),https://github.com/denoland/deno/issues/33346,21-04-2026,07-05-2026,Open,"bug, node compat",✓
+Deno,2.7.12,Cross runtime,Deno node:crypto incompatibility: createPublicKey fails on valid DER SPKI accepted by Node.js,https://github.com/denoland/deno/issues/33347,21-04-2026,09-06-2026,Closed as completed,"bug, node compat",✓
+Bun,1.3.13,Regression,node:crypto createPublicKey rejects DER SPKI accepted by Node.js,https://github.com/oven-sh/bun/issues/29558,21-04-2026,,Open,bug,✓
+Deno,2.7.12,Cross runtime,"Request.credentials is undefined instead of ""same-origin"" ",https://github.com/denoland/deno/issues/33348,21-04-2026,,Closed as duplicate,,✓
+Deno,2.7.12,Cross runtime,node:https: server.addContext is missing on https.createServer() instances,https://github.com/denoland/deno/issues/33357,22-04-2026,22-04-2026,Closed as completed,,✓
+Deno,2.7.12,Cross runtime,node:http: crash during WebSocket handshake instead of propagating 401 error (ethers WebSocketProvider),https://github.com/denoland/deno/issues/33358,22-04-2026,22-04-2026,Closed as completed,"bug, node compat",✓
+Deno,2.7.12,Cross runtime,node:https: getPeerCertificate() returns empty object despite authorized === true,https://github.com/denoland/deno/issues/33367,22-04-2026,25-04-2026,Closed as completed,,✓
+Deno,2.7.12,Cross runtime,node:child_process: fd 3 pipe broken in spawn(),https://github.com/denoland/deno/issues/33368,22-04-2026,,Open,"node compat, bug",✓
+Deno,2.7.12,Cross runtime,MessagePort.on('message') does not deduplicate listeners unlike Node.js worker_threads,https://github.com/denoland/deno/issues/33373,22-04-2026,17-05-2026,Closed as completed,node compat,✓
+Bun,1.3.13,Regression,Bun crashes when a NAPI module (@roamhq/wrtc via libuv) calls uv_async_init,https://github.com/oven-sh/bun/issues/29609,22-04-2026,22-04-2026,Closed as duplicate,crash,✓
+Deno,2.7.12,Cross runtime,process.on('SIGINT') handler receives undefined instead of signal name,https://github.com/denoland/deno/issues/33379,23-04-2026,25-04-2026,Closed as completed,,✓
+Deno,2.7.12,Cross runtime,Overriding globalThis.postMessage in Worker causes recursive call stack overflow in Deno Node worker_threads compatibility layer,https://github.com/denoland/deno/issues/33380,23-04-2026,26-04-2026,Closed as completed,,✓
+Bun,1.3.13,Regression,z3-solver behavior different from Node,https://github.com/oven-sh/bun/issues/29635,23-04-2026,23-04-2026,Closed as duplicate,,✓
+Deno,2.7.12,Cross runtime,Deno structuredClone incorrectly serializes File and Blob as empty objects,https://github.com/denoland/deno/issues/33382,23-04-2026,12-05-2026,Closed as completed,,✓
+Bun,1.3.13,Regression,structuredClone returns File and Blob as “detached” objects instead of fully usable clones,https://github.com/oven-sh/bun/issues/29637,23-04-2026,23-04-2026,Closed as completed,,✓
+Deno,2.7.12,Cross runtime,node:crypto.publicEncrypt does not validate invalid oaepHash (should throw like Node.js),https://github.com/denoland/deno/issues/33384,23-04-2026,24-04-2026,Closed as completed,,✓
+Deno,2.7.12,Cross runtime,node:vm.runInThisContext allows dynamic import() without importModuleDynamically callback ,https://github.com/denoland/deno/issues/33385,23-04-2026,28-05-2026,Closed as completed,"node compat, bug",✓
+Deno,2.7.12,Cross runtime,process EPIPE error event not emitted,https://github.com/denoland/deno/issues/33386,23-04-2026,,Open,"node compat, bug",✓
+Deno,2.7.12,Cross runtime,"Deno: Request.body.getReader({ mode: ""byob"" }) fails for Node IncomingMessage streams",https://github.com/denoland/deno/issues/33392,23-04-2026,25-04-2026,Closed as completed,,✓
+Deno,2.7.12,Cross runtime,fs.watch with recursive: true: inconsistent filename (basename vs relative path),https://github.com/denoland/deno/issues/33419,24-04-2026,25-04-2026,Closed as completed,,✓
+Bun,1.3.13,Regression,fs.watch with recursive: true: inconsistent filename (basename vs relative path),https://github.com/oven-sh/bun/issues/29677,24-04-2026,,Open,bug,✓
+Deno,2.7.12,Cross runtime,npm:elkjs: Worker instantiation fails in Deno (_Worker is not a constructor) ,https://github.com/denoland/deno/issues/33423,24-04-2026,27-04-2026,Closed as completed,working as designed,
+Bun,1.3.14,Cross runtime,"fs.readdir({ withFileTypes: true, encoding: 'buffer' }) returns Uint8Array[] instead of Dirent[]",https://github.com/oven-sh/bun/issues/30482,11-05-2026,,Open,bug,✓
+Deno,2.7.14,Cross runtime,"fs.readdir({ withFileTypes: true, encoding: 'buffer' }) returns string names instead of Buffer names",https://github.com/denoland/deno/issues/33957,11-05-2026,13-05-2026,Closed as completed,node compat,✓
+Deno,2.7.14,Cross runtime,tls: Server.setTicketKeys not implemented in Deno ,https://github.com/denoland/deno/issues/33963,11-05-2026,,Open,tls,✓
+Bun,1.3.14,Cross runtime,tls: Server.setTicketKeys not implemented in Deno ,https://github.com/oven-sh/bun/issues/30502,11-05-2026,,Open,bug,✓
+Bun,1.3.14,Cross runtime,Rethrowing inside process.on('uncaughtException') loses original Error stack,https://github.com/oven-sh/bun/issues/30504,11-05-2026,,Open,bug,✓
+Deno,2.7.14,Cross runtime,createHistogram missing from node:perf_hooks exports,https://github.com/denoland/deno/issues/34001,12-05-2026,15-05-2026,Closed as completed,,✓
+Bun,1.3.14,Cross runtime,process.send() never returns false under IPC backpressure,https://github.com/oven-sh/bun/issues/30569,12-05-2026,,Open,bug,✓
+Deno,2.7.14,Cross runtime,"http.ServerResponse emits both ""finish"" and ""close"" after aborted request",https://github.com/denoland/deno/issues/34002,12-05-2026,14-05-2026,Closed as completed,"node:http, bug",✓
+Bun,1.3.14,Cross runtime,"http.ServerResponse emits neither ""finish"" nor ""close"" after aborted request ",https://github.com/oven-sh/bun/issues/30571,12-05-2026,,Open,bug,✓
+Bun,1.3.14,Cross runtime,domain does not catch exceptions thrown inside setTimeout() callbacks ,https://github.com/oven-sh/bun/issues/30672,14-05-2026,,Open,bug,✓
+Deno,2.7.14,Cross runtime,Buffer(number) with large numeric argument causes panic in Deno ,https://github.com/denoland/deno/issues/34043,14-05-2026,17-05-2026,Closed as completed,"node compat, panic",✓
+Deno,2.7.14,Cross runtime,WebCrypto P-521 SPKI export incompatible with Node.js for compressed EC keys,https://github.com/denoland/deno/issues/34044,14-05-2026,17-05-2026,Closed as completed,"ext/crypto, bug",
+Deno,2.7.14,Cross runtime,child_process.spawnSync() hangs indefinitely when stdout exceeds max buffer,https://github.com/denoland/deno/issues/34045,14-05-2026,08-06-2026,Closed as completed,"node compat, bug",✓
+Deno,2.7.14,Cross runtime,HTTP server throughput significantly lower than Node.js under high concurrency load,https://github.com/denoland/deno/issues/34046,14-05-2026,,Open,ext/http,✓
+Bun,1.3.14,Cross runtime,async_hooks before() callback does not fire for Promise created before hook enable() ,https://github.com/oven-sh/bun/issues/30687,14-05-2026,,Open,,
+Bun,1.3.14,Cross runtime,"net.connect() fails with ""DEFAULT_IPV6_ADDR is not defined"" when using IPv6-mapped IPv4 address",https://github.com/oven-sh/bun/issues/30697,14-05-2026,,Open,bug,✓
+Deno,2.7.14,Cross runtime,process.nextTick() ordering differs from Node.js with Promise microtasks and queueMicrotask,https://github.com/denoland/deno/issues/34052,14-05-2026,15-05-2026,Closed as completed,"node compat, bug",✓
+Deno,2.7.14,Cross runtime,node:net invalid fd handling triggers panic in signal-hook,https://github.com/denoland/deno/issues/34054,14-05-2026,,Open,"node compat, panic, bug",✓
+Node,24.13.1,Regression,net.Socket({ fd }) can abort the Node.js process when iterating invalid file descriptors ,https://github.com/nodejs/node/issues/63308,14-05-2026,,Open,,
+Deno,2.7.14,Cross runtime,async_hooks.destroy not emitted after clearImmediate() unlike Node.js,https://github.com/denoland/deno/issues/34079,15-05-2026,15-05-2026,Closed as completed,,✓
+Bun,1.3.14,Cross runtime,async_hooks.createHook does not emit lifecycle events in Bun for timers/Immediate,https://github.com/oven-sh/bun/issues/30827,15-05-2026,,Open,bug,✓
+Bun,1.3.14,Cross runtime,createECDH('secp256k1') fails in Bun with ERR_CRYPTO_OPERATION_FAILED (works in Node),https://github.com/oven-sh/bun/issues/30830,15-05-2026,16-05-2026,Closed as duplicate,bug,✓
+Bun,1.3.14,Cross runtime,"child_process.spawn stdio piping between processes fails in Bun with ""TODO: stream.Readable stdio"" error",https://github.com/oven-sh/bun/issues/30831,15-05-2026,,Open,bug,✓
+Bun,1.3.14,Cross runtime,Readable async iterator resolves instead of rejecting when stream.destroy() is called during iteration,https://github.com/oven-sh/bun/issues/30919,17-05-2026,,Open,bug,✓
+Deno,2.7.14,Cross runtime,Deno panics when repeatedly creating VM contexts and executing scripts in a loop,https://github.com/denoland/deno/issues/34185,17-05-2026,17-05-2026,Closed as completed,,✓
+Deno,2.7.14,Cross runtime,Deno throws TypeError on process exit when calling process._getActiveHandles() in 'exit' event,https://github.com/denoland/deno/issues/34187,17-05-2026,17-05-2026,Closed as completed,,✓
+Deno,2.7.14,Cross runtime,Object.freeze(process) causes Deno to throw during shutdown (Cannot assign to read only property '_exiting') while Node exits cleanly,https://github.com/denoland/deno/issues/34197,17-05-2026,,Open,,
+Bun,1.3.14,Cross runtime,switch-case const causes incorrect TDZ behavior / lexical scope leakage,https://github.com/oven-sh/bun/issues/30932,17-05-2026,,Open,bug,✓
+Bun,1.3.14,Cross runtime,process.beforeExit event is not emitted during normal shutdown,https://github.com/oven-sh/bun/issues/30934,17-05-2026,,Open,bug,✓
+Bun,1.3.14,Cross runtime,async_hooks + process._fatalException: loss of function name and async context in TAP subtest errors,https://github.com/oven-sh/bun/issues/30938,17-05-2026,,Open,bug,✓
+Bun,1.3.14,Cross runtime,stream/web TransformStream + Node Transform.fromWeb causes internal webstreams_adapters crash (this is not an object),https://github.com/oven-sh/bun/issues/30939,17-05-2026,,Open,bug,✓
+Deno,2.7.14,Cross runtime,tls.connect: rejectUnauthorized=false does not allow self-signed TLS handshake to complete (ECONNRESET) ,https://github.com/denoland/deno/issues/34202,17-05-2026,26-05-2026,Closed as completed,,
+Bun,1.3.14,Cross runtime,http2 pushStream throws synchronously instead of returning error in callback,https://github.com/oven-sh/bun/issues/30942,17-05-2026,21-05-2026,Closed as duplicate,bug,✓
+Deno,2.8.1,Cross runtime ,fetch() does not enforce Fetch Standard blocked-port list (e.g. port 6000) in Deno,https://github.com/denoland/deno/issues/34680,01-06-2026,01-06-2026,Closed as completed,,✓
+Bun,1.4.0,Regression,child_process.exec(): destroying child.stdout does not cause stdout write failure like Node.js,https://github.com/oven-sh/bun/issues/31719,02-06-2026,02-06-2026,Closed as not planned,,
+Deno,2.8.1,Cross runtime ,@sap/hana-client native addon fails to load: undefined symbol uv_cond_init,https://github.com/denoland/deno/issues/34736,02-06-2026,,Open,node compat,✓
+Deno,2.8.1,Cross runtime ,Node native addon fails to load in Deno with unresolved symbol error (node_module_register),https://github.com/denoland/deno/issues/34753,02-06-2026,,Open,node compat,✓
+Deno,2.8.1,Cross runtime ,Deno fetch does not respect HTTP_PROXY / HTTPS_PROXY environment variables (Node compatibility mismatch),https://github.com/denoland/deno/issues/34754,02-06-2026,,Open,,
+Bun,1.4.0,Regression,JSZip + Node stream adapter performs significantly slower in Bun than Node under identical workload,https://github.com/oven-sh/bun/issues/31763,03-06-2026,06-06-2026,Closed as duplicate,bug,✓
+Deno,2.8.1,Cross runtime ,Node compatibility divergence: dns.lookup('localhost') and net.Server.listen() resolve IPv4 vs IPv6 differently in Deno vs Node,https://github.com/denoland/deno/issues/34781,03-06-2026,,Open,node compat,✓
+Deno,2.8.1,Cross runtime ,Inconsistent or misleading documentation around maxHeaderSize CLI configurability (--max-http-header-size) in Deno Node compatibility,https://github.com/denoland/deno/issues/34786,03-06-2026,,Open,node compat,✓
+Bun,1.4.0,Regression,Differences in child_process.spawnSync return shape and error normalization between Node.js and Bun,https://github.com/oven-sh/bun/issues/31767,03-06-2026,,Open,bug,✓
+Deno,2.8.1,Cross runtime ,"node.lookup(undefined, cb) throws in Deno instead of following Node.js compatibility behavior",https://github.com/denoland/deno/issues/34801,03-06-2026,05-06-2026,Closed as completed,,✓
+Bun,1.4.0,Regression,Bun throws error on importing runMain from node:module,https://github.com/oven-sh/bun/issues/31773,03-06-2026,,Open,bug,✓
+Deno,2.8.1,Cross runtime ,Deno throws error on importing runMain from node:module,https://github.com/denoland/deno/issues/34812,03-06-2026,10-06-2026,Closed as completed,node compat,✓
+Deno,2.8.1,Cross runtime ,PM2 CLI crashes under Deno with TypeError: this.set is not a function,https://github.com/denoland/deno/issues/34816,03-06-2026,04-06-2026,Closed as duplicate,,✓
+Bun,1.4.0,Regression,"console.log('%i', array) produces NaN instead of Node-compatible output",https://github.com/oven-sh/bun/issues/31777,03-06-2026,,Open,bug,✓
+Deno,2.8.1,Cross runtime ,Deno node:test does not fail tests on unhandled promise rejections,https://github.com/denoland/deno/issues/34818,03-06-2026,18-06-2026,Closed as completed,node compat,✓
+Bun,1.4.0,Regression,Bun ignores tunnel.httpsOverHttp() and does not emit HTTP CONNECT proxy requests (Node mismatch),https://github.com/oven-sh/bun/issues/31795,04-06-2026,07-06-2026,Closed as duplicate,bug,✓
+Bun,1.4.0,Regression,Bun’s setImmediate() return value does not expose Node’s Immediate._onImmediate internal field,https://github.com/oven-sh/bun/issues/31801,04-06-2026,07-06-2026,Closed as duplicate,bug,✓
+Deno,2.8.1,Cross runtime ,BroadcastChannel fails to deserialize SharedArrayBuffer in worker context (RangeError: could not deserialize value),https://github.com/denoland/deno/issues/34836,04-06-2026,06-06-2026,Closed as completed,,✓
+Bun,1.4.0,Regression,crypto module property access throws ERR_INVALID_THIS when enumerated (breaks Bluebird promisifyAll),https://github.com/oven-sh/bun/issues/31806,04-06-2026,,Open,bug,✓
+Deno,2.8.1,Cross runtime ,"node:dgram UDP6 addMembership() rejects scoped IPv6 interface (""::%12"") with EINVAL while Node.js accepts it",https://github.com/denoland/deno/issues/34838,04-06-2026,05-06-2026,Closed as completed,,✓
+Deno,2.8.1,Cross runtime ,node:fs opendir async iterator allows use-after-close without throwing ERR_DIR_CLOSED,https://github.com/denoland/deno/issues/34900,05-06-2026,07-06-2026,Closed as completed,node compat,✓
+Bun,1.4.0,Regression,node:fs opendir async iterator allows use-after-close without throwing ERR_DIR_CLOSED,https://github.com/oven-sh/bun/issues/31879,05-06-2026,,Open,bug,✓
+Deno,2.8.2,Cross runtime ,node:url format() drops authentication credentials when passed a WHATWG URL object,https://github.com/denoland/deno/issues/34925,05-06-2026,06-06-2026,Closed as completed,node compat,✓
+Bun,1.4.0,Regression,Node.js dns.lookup compatibility mismatch: Bun returns DNSException (ESERVFAIL) instead of Node-style Error (EAI_AGAIN),https://github.com/oven-sh/bun/issues/31888,05-06-2026,,Open,bug,
+Deno,2.8.2,Cross runtime ,string_decoder produces different UTF-8 output than Node.js for identical Buffer input,https://github.com/denoland/deno/issues/34930,05-06-2026,06-06-2026,Closed as completed,node compat,✓
+Bun,1.4.0,Cross runtime ,Bun panics with cannot resolve DirInfo for non-absolute path: C:/ during import.meta.resolve(),https://github.com/oven-sh/bun/issues/32016,09-06-2026,,Open,crash,✓
+Deno,2.8.3,Regression,node:dns Resolver.setServers(['127.0.0.1']) returns ETIMEOUT instead of ECONNREFUSED,https://github.com/denoland/deno/issues/35173,12-06-2026,,Open,"node compat, bug",✓
+Bun,1.4.0,Cross runtime ,node:dns Resolver.setServers(['127.0.0.1']) returns ETIMEOUT instead of ECONNREFUSED,https://github.com/oven-sh/bun/issues/32164,12-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,Bun http.request() emits ECONNRESET after successful HTTP 101 Upgrade response,https://github.com/oven-sh/bun/issues/32222,13-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,Node compatibility: console.table() renders ANSI escape sequences instead of escaping them,https://github.com/oven-sh/bun/issues/32223,13-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,child_process.spawn resolves binaries differently than Node (PATH prioritization differs for node_modules/.bin),https://github.com/oven-sh/bun/issues/32225,13-06-2026,13-06-2026,Closed as not planned,,
+Bun,1.4.0,Cross runtime ,CJS interop: function exports with attached properties are not preserved in import (graphql-tag mismatch vs Node.js),https://github.com/oven-sh/bun/issues/32226,13-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,process lifecycle events (beforeExit/exit) are not emitted via process.emit as in Node.js,https://github.com/oven-sh/bun/issues/32227,13-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,async_hooks compatibility: executionAsyncId not preserved across fs callback execution,https://github.com/oven-sh/bun/issues/32230,13-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,Readable.pipe(net.Socket) closes connection before peer response is delivered,https://github.com/oven-sh/bun/issues/32231,13-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,node:worker_threads MessagePort loses EventEmitter methods after transfer,https://github.com/oven-sh/bun/issues/32232,13-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,"tls.connect({ socket }) fails to intercept stream, causing subsequent data to re-trigger cleartext listeners and throw ""Invalid socket""",https://github.com/oven-sh/bun/issues/32239,13-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,import.meta properties are accessible but not discoverable via Object.getOwnPropertyNames() / Reflect.ownKeys(),https://github.com/oven-sh/bun/issues/32246,14-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,Bun accepts decorator syntax in plain .js files that Node and Deno reject,https://github.com/oven-sh/bun/issues/32299,15-06-2026,15-06-2026,Closed as not planned,,
+Deno,2.8.3,Regression," Node compatibility: new Response([1, 2, 3]).text() throws, while Node.js returns ""1,2,3""",https://github.com/denoland/deno/issues/35230,15-06-2026,,Open,web,✓
+Deno,2.8.3,Regression,fetch().arrayBuffer() fails with TypeError: error reading a body from connection for successful 200 OK response,https://github.com/denoland/deno/issues/35233,15-06-2026,,Open,"web, needs discussion",
+Bun,1.4.0,Cross runtime ,"Worker data: URL errors do not populate ErrorEvent fields (filename, lineno, colno) in Bun",https://github.com/oven-sh/bun/issues/32342,15-06-2026,19-06-2026,Closed as duplicate,bug,✓
+Bun,1.4.0,Cross runtime ,Bun prints multi-level Error.cause chain as separate errors instead of preserving Node-style nested stack trace,https://github.com/oven-sh/bun/issues/32343,15-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,Bun normalizes Node.js http.request ECONNREFUSED errors and loses original Error instance structure,https://github.com/oven-sh/bun/issues/32344,15-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,Uncaught exception reporting ignores custom Error.stack value,https://github.com/oven-sh/bun/issues/32390,16-06-2026,,Open,bug,✓
+Deno,2.8.3,Regression,Uncaught exception reporting ignores custom Error.stack value,https://github.com/denoland/deno/issues/35264,16-06-2026,16-06-2026,Closed as duplicate,,✓
+Bun,1.4.0,Cross runtime ,node:worker_threads: postMessage() throws DataCloneError when transferring ReadableStream,https://github.com/oven-sh/bun/issues/32397,16-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,URL import from cdn.pika.dev loses named exports (isNumber is undefined),https://github.com/oven-sh/bun/issues/32398,16-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,Default import from Skypack xregexp@5.0.2 is missing XR.tag,https://github.com/oven-sh/bun/issues/32399,16-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,ReadableStream BYOB read() does not detach supplied ArrayBuffer,https://github.com/oven-sh/bun/issues/32402,16-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,"crypto.generateKeyPair('ec', { namedCurve: 'secp256k1' }) returns ERR_OSSL_UNKNOWN_GROUP",https://github.com/oven-sh/bun/issues/32524,20-06-2026,,Open,,
+Bun,1.4.0,Cross runtime ,node:net Server.listen fails with address family 10 when used via portfinder,https://github.com/oven-sh/bun/issues/32408,16-06-2026,,Open,bug,✓
+Bun,1.4.0,Cross runtime ,process.chdir throws ENOENT getcwd after current working directory is deleted,https://github.com/oven-sh/bun/issues/32409,16-06-2026,,Open,bug,✓

@@ -1,0 +1,261 @@
+{
+  "algoliasearch-helper": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "asciitable.js": {
+    "mitigation": "The code includes a mitigation against Prototype Pollution within the `defaultArgs` function. It uses a custom `hasOwn` helper function that relies on `Object.prototype.hasOwnProperty.call(obj, prop)` to validate property ownership. When iterating over the `defaults` object and assigning values from the `options` object, it explicitly checks `hasOwn(defaults, prop)` and `hasOwn(options, prop)`. This ensures that only properties directly present on the objects are considered, effectively preventing the traversal and assignment of dangerous inherited keys like `__proto__`, `constructor`, or `prototype"
+  },
+  "assign-deep": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "aurelia-path": {
+    "mitigation": "The code includes a `preventPollution` function that explicitly checks if a key is strictly equal to the string '__proto__'. If this dangerous key is detected, the function throws an Error ('Prototype pollution detected.'), halting execution. This mitigation is actively applied in the `parseComplexParam` function during the parsing of nested query string parameters, as well as in `parseQueryString` when processing scalar parameters, preventing attackers from using the '__proto__' key to manipulate object prototypes."
+  },
+  "bmoor": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "bodymen": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "cached-path-relative": {
+    "mitigation": "The code uses `Object.create(null)` to initialize the `cache` object and its nested objects. By creating objects with a null prototype, the code inherently protects against Prototype Pollution. These objects do not inherit from `Object.prototype`, meaning dangerous keys like `__proto__`, `constructor`, or `prototype` cannot be used to traverse or modify the global object prototype chain."
+  },
+  "changeset": {
+    "mitigation": "uses Object.hasOwnProperty check"
+  },
+  "class-transformer": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "confinit": {
+    "mitigation": "uses Object.hasOwnProperty check"
+  },
+  "connie": {
+    "mitigation": "uses Array.prototype.includes"
+  },
+  "convict": {
+    "mitigation": "Uses String.prototype.startsWith function to check __proto__,constructor,prototype"
+  },
+  "controlled-merge": {
+    "mitigation": "uses Array.prototype.includes"
+  },
+  "deap": {
+    "mitigation": "uses Object.hasOwnProperty check"
+  },
+  "deep-extend": {
+    "mitigation": "The code includes a specific mitigation against Prototype Pollution via a helper function named `safeGetProperty`. This function intercepts property access during the deep extension process and explicitly checks if the property name is `__proto__`. If it is, the function returns `undefined` instead of the actual value, effectively blocking the assignment of the `__proto__` property and preventing prototype pollution."
+  },
+  "deep-get-set": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "deep-override": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "deepHas": {
+    "mitigation": "uses Object.hasOwnProperty check"
+  },
+  "deeply": {
+    "mitigation": "uses Array.prototype.indexOf to look for __proto__, constructor"
+  },
+  "deepref": {
+    "mitigation": "The code includes a specific mitigation against Prototype Pollution in the `Reference.createFromPath` function. As it splits the path and iterates over each field, it explicitly checks if the field is equal to `'__proto__'`. If it is, the function throws an Error (`'Cannot assign reference to prototype'`), effectively blocking the assignment of properties to the object's prototype and preventing prototype pollution via the `__proto__` property."
+  },
+  "defaults-deep": {
+    "mitigation": "Checks only __proto__ using == and skips contructor, prototype"
+  },
+  "doc-path": {
+    "mitigation": "uses String.prototype.startsWith check"
+  },
+  "dot-notes": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "dot-object": {
+    "mitigation": "uses Array.prototype.indexOf to look for __proto__, constructor"
+  },
+  "dotty": {
+    "mitigation": "explicitly check __proto__ using == and constructor by checking whether variable is an object or not"
+  },
+  "eivifj/dot": {
+    "mitigation": "Uses Object.prototype.hasOwnProperty.call as security barrier"
+  },
+  "extend": {
+    "mitigation": "The code implements several specific mitigations against Prototype Pollution. First, it uses a custom `getProperty` function to safely read properties from source objects. If the key is `__proto__`, it returns `undefined` unless `__proto__` is an own property (verified via `hasOwnProperty`), preventing the pollution of Object.prototype through the `__proto__` accessor. Second, it uses a custom `setProperty` function to write properties. If the key is `__proto__` and `Object.defineProperty` is available, it defines `__proto__` as a regular, enumerable own property on the target object with a specified value, rather than utilizing the prototype-mutating accessor. Third, the `isPlainObject` function strictly validates objects to ensure they are plain Objects (and not malicious class constructors or other built-ins) by checking the `constructor` and `isPrototypeOf` properties, preventing unsafe prototype traversal during deep merges."
+  },
+  "extend-merge": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "flat": {
+    "mitigation": "The code includes a specific mitigation against Prototype Pollution in the `unflatten` function. Inside the `while` loop that processes the split keys, there is an explicit check: `if (key1 === '__proto__') { return }`. This effectively halts the processing of the current key path if the `__proto__` property is encountered, preventing the assignment of arbitrary properties to `Object.prototype` and mitigating prototype pollution attacks via the `__proto__` property."
+  },
+  "flattenizer": {
+    "mitigation": "uses == for __proto__ and also uses Object.hasOwnProperty function, later explicitly creates a new {}"
+  },
+  "getobject": {
+    "mitigation": "The `set` function includes a specific check to prevent Prototype Pollution by explicitly blocking the assignment of the `__proto__` property. It parses the `parts` string into an array and uses `parts.includes('__proto__')` to detect if the target path contains `__proto__`. If it does, the function immediately returns without performing the property assignment, directly mitigating the vulnerability referenced as CVE-2020-28282."
+  },
+  "hoek": {
+    "mitigation": "The code includes specific mitigations against Prototype Pollution in the `exports.merge` function. It iterates over the keys of the source object using `internals.keys` (which utilizes `Object.getOwnPropertyNames` or `Reflect.ownKeys`) and explicitly checks for the dangerous `__proto__` key, skipping it if found (`if (key === '__proto__' || !Object.prototype.propertyIsEnumerable.call(source, key)) { continue; }`). Additionally, by checking `Object.prototype.propertyIsEnumerable`, it inherently ignores the `constructor` and `prototype` properties as they are non-enumerable on standard objects, effectively preventing them from being merged and mitigating prototype pollution attacks."
+  },
+  "i18next": {
+    "mitigation": "The code contains several mitigations against Prototype Pollution. The primary defense is in the `deepExtend` function, which explicitly skips dangerous keys during iteration: `if (prop !== '__proto__' && prop !== 'constructor')`. This prevents attackers from using the `__proto__` or `constructor` properties to traverse and pollute Object.prototype. Additionally, the code uses `Object.prototype.hasOwnProperty.call()` in several places (`getLastOfPath`, `getPath`, `deepFind`, `hasDefaultValue`, and the `translate` method) to ensure that only own properties are accessed or traversed, preventing access to inherited prototype properties. The `createProxy` function also uses `Object.create(null)` to create objects with a null prototype, which are inherently immune to prototype pollution."
+  },
+  "ini": {
+    "mitigation": "The code implements multiple robust mitigations against Prototype Pollution. First, it uses `Object.create(null)` to initialize the main parsed object (`out`) and all nested section objects, ensuring they do not inherit from `Object.prototype` and are immune to pollution. Second, it explicitly checks for and skips the dangerous `__proto__` key during section parsing, key-value assignment, and dot-separated section traversal. Third, it uses `Object.prototype.hasOwnProperty.call()` to safely check property ownership when managing arrays and nested objects, avoiding prototype chain lookups. Finally, when a `__proto__` section is encountered, it creates a detached null-prototype object to continue parsing without attaching the polluted structure to the main output."
+  },
+  "inireader": {
+    "mitigation": "It frequently creates configuration/storage objects with a null prototype using Object.create(null), including in parseFile(), construct(), setParam(), removeParam(), and deepCopy(). This prevents inherited prototype properties from being reachable through those objects and makes assignments to keys like 'proto' behave as ordinary data properties rather than invoking Object.prototype.proto setters on normal objects. "
+  },
+  "jquery": {
+    "mitigation": "The code contains explicit Prototype Pollution mitigations within the `jQuery.extend` function. During the deep copy and property merging process, it iterates over the properties of the source object and explicitly checks for the `__proto__` key. If the key name is `__proto__`, the code skips the assignment (`continue`), thereby preventing the modification of the `Object.prototype`. This effectively blocks the most common vector for Prototype Pollution vulnerabilities in JavaScript libraries."
+  },
+  "js-data": {
+    "mitigation": "The code contains explicit Prototype Pollution mitigations. A helper function `isPrototypePolluted` is defined to check if a key is one of `__proto__`, `prototype`, or `constructor`. This check is actively used within the `mkdirP` function to prevent the creation or traversal of properties with dangerous names. Furthermore, the `deepFillIn` and `deepMixIn` functions utilize this check to skip processing any keys that match these dangerous properties, effectively blocking prototype pollution vectors during recursive object merging and path assignment."
+  },
+  "json-pointer": {
+    "mitigation": "The `api.set` function includes an explicit check to mitigate Prototype Pollution. During the traversal of the reference tokens, it checks if the current token (`tok`) is strictly equal to `\"__proto__\"`, `\"constructor\"`, or `\"prototype\"`. If a token matches one of these dangerous keys, the `continue` statement skips execution for that iteration, preventing the code from traversing into or assigning values to the object's prototype chain."
+  },
+  "json-schema": {
+    "mitigation": "objTypeDef.hasOwnProperty(i) to process only own schema properties and explicitly skips dangerous keys where i is 'proto' or 'constructor' (using == )"
+  },
+  "just-extend": {
+    "mitigation": "The code includes a partial Prototype Pollution mitigation by using Object.prototype.hasOwnProperty.call(extender, key) when iterating source objects, and Object.prototype.hasOwnProperty.call(result, key) when deciding whether to reuse an existing nested target during deep extension."
+  },
+  "just-safe-set": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "keyget": {
+    "mitigation": "Uses Array.prototype.includes function to check __proto__,constructor,prototype"
+  },
+  "libnested": {
+    "mitigation": "Uses Array.prototype.includes function to check __proto__,constructor,prototype"
+  },
+  "linux-cmdline": {
+    "mitigation": "uses Object.hasOwnProperty check"
+  },
+  "locutus": {
+    "mitigation": "String.prototype.includes used to check for __proto__, constructor"
+  },
+  "lodash": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "madlib-object-utils": {
+    "mitigation": "uses Object.hasOwnProperty check"
+  },
+  "mathjs": {
+    "mitigation": "Prototype Pollution-related mitigations in the Babel-generated _interopRequireWildcard helper. It creates the module wrapper object as { proto: null, default: e }, which gives that temporary object a null prototype and prevents inherited Object.prototype properties from being reachable on it. The helper also copies module properties only when {}.hasOwnProperty.call(e, t) is true"
+  },
+  "merge": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "merge-deep": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "merge-options": {
+    "mitigation": "It uses Object.defineProperty via the local defineProperty helper for all writes instead of direct assignment like object[key] = value. It also enumerates only own enumerable properties using Object.prototype.hasOwnProperty.call(value, key), avoiding inherited properties during cloning and merging."
+  },
+  "minimist": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "mixin-deep": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "mout": {
+    "mitigation": "String.prototype.includes used to check for __proto__, constructor"
+  },
+  "mpath": {
+    "mitigation": "Array.prototype.indexOf used to check for __proto__ and constructor"
+  },
+  "mquery": {
+    "mitigation": "Array.prototype.indexOf used to check for __proto__ and constructor"
+  },
+  "multi-ini": {
+    "mitigation": "RegExp.prototype.test used to check for __proto__ and constructor"
+  },
+  "nested-object-assign": {
+    "mitigation": "RegExp.prototype.test used to check for __proto__ and constructor"
+  },
+  "nestie": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "object-collider": {
+    "mitigation": "explicitly check __proto__ using ==. It uses Object.defineProperty via the local defineProperty helper for all writes instead of direct assignment like object[key] = value. This is important because defining a property named'proto' creates an own data property rather than invoking the legacy proto setter, preventing prototype mutation. It also enumerates only own enumerable properties using Object.prototype.hasOwnProperty.call(value, key), avoiding inherited properties during cloning and merging."
+  },
+  "object-path": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "objection" : {
+    "mitigation": "explicitly check __proto__ and also check if ip is object using typeof <var> == 'object'"
+  },
+  "objnest": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "patchmerge": {
+    "mitigation": "Detects if the merge is about to modify Object.prototype, it deletes the variable Eg. if (original[name] === Object.prototype) {\ndelete original[name];. Replace it with a new empty object instead (using Object.defineProperty)."
+  },
+  "pathval": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "predefine": {
+    "mitigation" : "uses Object.prototype.hasOwnProperty"
+  },
+  "promisehelpers": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+   "properties-reader": {
+    "mitigation": "Prevents prototype pollution by safely creating properties with Object.defineProperty(), using own-property checks, and explicitly handling __proto__ as a regular property."
+  },
+  "property-expr": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "putil-merge": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "querymen": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "rfc6902": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "safe-flat": {
+    "mitigation": "Uses Array.prototype.includes function to check __proto__,constructor,prototype"
+  },
+  "set-in": {
+    "mitigation": "Uses Array.prototype.includes function to check __proto__,constructor,prototype"
+  },
+  "set-getter": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "shvl": {
+    "mitigation": "Uses RegExp.prototype.test to check __proto__,constructor,prototype"
+  },
+  "swiper": {
+    "mitigation": "Uses Array.prototype.indexOf to check __proto__,constructor,prototype"
+  },
+  "think-helper": {
+    "mitigation": "Uses external package lodash.merge"
+  },
+  "total.js": {
+    "mitigation": "Uses RegExp.prototype.test to check __proto__,constructor,prototype"
+  },
+  "ts-dot-prop": {
+    "mitigation": "Uses Array.prototype.indexOf to check __proto__,constructor,prototype"
+  },
+  "typeorm": {
+    "mitigation": "Prototype pollution is mitigated by skipping __proto__ keys and safely handling nested constructor properties during recursive merging, preventing modification of Object.prototype."
+  },
+  "upmerge": {
+    "mitigation": "use == to check __proto__, also uses Object.prototype.hasOwnProperty function"
+  },
+  "utilitify": {
+    "mitigation": "explicitly check __proto__ and constructor using =="
+  },
+  "vega-util": {
+    "mitigation": "Explicitly blocks __proto__ keys and avoids traversing inherited constructor properties by creating own objects for nested configuration values."
+  },
+  "y18n": {
+    "mitigation": "Use Object.create(null) for locale caches and restrict locale updates to own properties using Object.prototype.hasOwnProperty.call() to prevent prototype pollution."
+  },
+  "yargs_parser": {
+    "mitigation": "explicitly blocks __proto__ and constructor.prototype is blocked by if (typeof o[key] !== 'object' || Array.isArray(o[key])) check"
+  }
+
+}

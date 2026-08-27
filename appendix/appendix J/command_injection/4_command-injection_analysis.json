@@ -1,0 +1,288 @@
+{
+  "react-dev-utils": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code uses execFileSync for the lsof call with an argument array, which avoids invoking a shell for that specific command and reduces injection risk there. However, other uses of execSync build shell command strings via concatenation without validation or escaping, and no additional mitigations (allowlists, sanitization, or disabling shell) are present for those."
+        }
+      }
+    ]
+  },
+  "total.js": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code uses Node\u2019s `child_process.fork` for workers and startup scripts instead of building shell commands, avoiding direct shell invocation. No `exec`, `execSync`, `spawn` with `shell:true`, or template-literal shell commands are present. External HTTP downloads and proxying use `http`/`https` modules and `U.request`/`U.download`, not shell. Thus, user-controlled input is not passed into OS shell APIs, effectively mitigating OS command injection in this file."
+        }
+      }
+    ]
+  },
+  "gry": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code avoids building shell command strings directly and instead passes an argument array (e.g., [\"commit\", \"-m\", message, ...]) into ExecLimiter, which typically uses child_process.spawn/execFile-style APIs. This pattern generally avoids invoking a shell and prevents classic shell metacharacter injection. No template literals or string concatenation are used to form a single shell command line, reducing OS command injection risk, assuming ExecLimiter does not internally enable shell:true or re-concatenate arguments into a shell string."
+        }
+      }
+    ]
+  },
+  "diskusage-ng": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation":"The code avoids passing user-controlled input to the shell command. The exec() call executes the fixed string WMIC LOGICALDISK GET Name,Size,FreeSpace; the supplied path is only processed afterward by diskname(path) and is never interpolated into the command. Additionally, diskname() normalizes/parses the path and validates the extracted drive name with isDiskname(), requiring a colon and uppercase letters. Thus, there is no direct command-injection path through path."
+        }
+      }
+    ]
+  },
+  "dns-sync": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation":"The code has input validation for both command arguments: hostname must match a strict DNS hostname regex, preventing shell metacharacters such as ;, &, |, $, backticks, and spaces, while type is restricted to a fixed allowlist of DNS record types. These checks occur before constructing the shell command. However, the code still uses shell.exec() with a dynamically constructed command string, so the mitigation relies on the hostname/type validation rather than avoiding shell invocation entirely."
+        }
+      }
+    ]
+  },
+  "connection-tester": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code performs partial validation on user-controlled inputs before using them in a shell command. `host` is restricted to valid IP/hostname formats via `net.isIP` and a hostname regex, and `port` is coerced to a number and constrained to 1\u201365535. These checks significantly reduce the ability to inject shell metacharacters into the `execSync` command string, mitigating straightforward OS command injection via `host` and `port`, though `connectTimeout` remains unvalidated."
+        }
+      }
+    ]
+  },
+  "get-npm-package-version": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code implements a basic allowlist-style validation on both `packageName` and `registry`, rejecting any value containing characters commonly used for shell metacharacters (e.g., backticks, $, &, ;, |, <, >, whitespace, parentheses, braces, brackets, newlines). If such characters are present, it returns null before reaching `execSync`. This reduces the risk of command injection by preventing typical shell-breaking or command-chaining payloads from being injected into the constructed `npm view` command."
+        }
+      }
+    ]
+  },
+  "git-tags-remote": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code uses child_process.spawn with a fixed binary ('git') and a fixed argument list ['ls-remote','--tags', r], passing the repository value as a separate argument instead of concatenating a shell command string. It does not enable shell execution (no shell: true) and does not use exec/execSync/template-literal commands. This avoids invoking a shell and prevents typical OS command injection via metacharacters in the user-controlled repository value."
+        }
+      }
+    ]
+  },
+  "giting": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "Some partial mitigations exist: branch names are passed through encodeURIComponent() before being concatenated into git command strings, which removes spaces and most shell metacharacters from that specific user-controlled value, reducing injection risk via branch. However, other user-controlled fields (e.g., organization, name) are directly concatenated into shell commands without argument arrays or escaping, and child_process.exec is used, so overall protection is incomplete."
+        }
+      }
+    ]
+  },
+  "hot-formula-parser": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "remove usage of eval function in lib/grammar-parser/grammar-parser.js"
+        }
+      }
+    ]
+  },
+  "clamscan": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code consistently uses child_process.execFile (and promisified execFile) with an argument array instead of exec/execSync or spawn with shell:true, avoiding shell interpretation. User-controlled values (paths, file names, options) are passed as separate arguments, not interpolated into a shell command string. No use of template literals or concatenated shell commands is present. This design effectively prevents OS command injection because the OS executes the ClamAV binaries directly with arguments, bypassing the shell\u2019s metacharacter parsing and command chaining features."
+        }
+      }
+    ]
+  },
+  "apex-publish-static-files": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code uses child_process.spawnSync with an argument array instead of exec/execSync or a concatenated shell command string, and does not set shell: true. This means the OS command is invoked directly without passing through a shell, so user-controlled values (connectString, directory, appID, destination, pluginName, sqlclPath) are treated as individual arguments rather than being interpreted by a shell, significantly reducing classic OS command injection risk."
+        }
+      }
+    ]
+  },
+  "growl": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code mitigates command injection primarily by avoiding shell invocation: it uses child_process.spawn with a command and an argument array, and never sets shell: true or uses exec/execSync/template-literal shell strings. User-controlled values (msg, title, url, image, etc.) are passed as plain arguments, not interpolated into a shell command line. Even for the Custom exec option, the string is split into a binary plus arguments and still executed via spawn without a shell, preventing shell metacharacters from being interpreted."
+        }
+      }
+    ]
+  },
+  "killport": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code validates the `port` parameter with a strict numeric regex (`/^\\d+$/`), preventing injection via the `lsof -i:` command string. This ensures only digits are accepted, blocking shell metacharacters and additional arguments. However, no further mitigations (like avoiding `exec` or using argument arrays) are applied, and the `kill` command is built from PIDs parsed from `lsof` output, which is generally safe as they are numeric and not user-controlled."
+        }
+      }
+    ]
+  },
+  "bestzip": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code mitigates command injection by using child_process.spawn with a fixed command ('zip') and an argument array instead of exec/execSync or a concatenated shell string. It does not enable shell execution (no 'shell: true'), so user-controlled values (source, destination, level) are passed as raw arguments, not interpreted by a shell. This avoids shell metacharacter parsing and significantly reduces OS command injection risk, assuming the 'zip' binary itself is trusted."
+        }
+      }
+    ]
+  },
+  "portprocesses": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code parses both `port` and `pid` with `parseInt` and rejects non-numeric values before interpolating them into shell commands. This numeric coercion and NaN check prevent direct injection of shell metacharacters (e.g., `;`, `&&`, backticks) via these parameters, since only valid decimal integers are ever included in the `lsof` and `kill` command strings. However, no further allowlisting or escaping is applied, and safety also depends on how `exec` is implemented."
+        }
+      }
+    ]
+  },
+  "command-exists": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation":"The code actively mitigates command injection through cleanInput(), which restricts safe characters on Unix and shell-quotes inputs containing other characters using single-quote escaping. On Windows, inputs are wrapped in double quotes, with path components handled separately. Additionally, Windows commandName is validated against a restrictive path regex before where is executed. The sanitized cleanedCommandName, rather than the original input, is interpolated into exec()/execSync() shell commands. However, because shell commands are still constructed dynamically, the mitigation depends on the correctness of cleanInput() and the Windows validation rather than avoiding shell invocation."
+        }
+      }
+    ]
+  },
+  "arpping": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code uses child_process.execFile with argument arrays (e.g., ['ping', flag, timeout, ip] and ['arp', ...arpFlag, ip]) instead of exec/execSync with concatenated command strings. execFile without shell options avoids invoking a shell, so user-controlled values like IP addresses are passed as discrete arguments, not interpreted by a shell. No use of `shell: true` or template-literal command construction is present, which significantly reduces OS command injection risk even if IPs are attacker-controlled."
+        }
+      }
+    ]
+  },
+  "git-parse": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code validates the repository path via validatePath(resolveHome(repoPath)) before using it, and rejects on validation failure. This suggests an attempt to constrain filesystem paths and likely prevent unsafe values from reaching lower-level git invocation logic. However, without seeing implementations of validatePath, gitLogStream, or other git helpers, it\u2019s unclear how robustly they prevent command injection in any underlying child_process calls."
+        }
+      }
+    ]
+  },
+  "kill-by-port": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The only partial mitigation is the use of parseInt(port, 10), which restricts the port value to an integer and prevents direct injection via the lsof command. However, the resulting processId from lsof is used directly in a kill command without validation or sanitization, and execSync with template literals is used, so overall command injection risk remains high despite this minor numeric parsing step."
+        }
+      }
+    ]
+  },
+  "node-unrar": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code avoids direct shell invocation by using child_process.execFile with an argument array, which is safer than exec/execSync. It also applies shell-escape to both the destination path and the RAR file path before passing them as arguments, reducing the risk of special characters being interpreted in a dangerous way. No shell: true option is used, so a shell is not explicitly invoked. These measures together significantly mitigate OS command injection risks for user-controlled paths."
+        }
+      }
+    ]
+  },
+  "vboxmanage.js": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code implements partial mitigations: all command arguments and option values are passed through custom escaping (escapeArg) and option names are validated with isOptionSafe to reject characters commonly used for shell metacharacters, differing for Windows and POSIX. This reduces straightforward command injection when building the VBoxManage command string. However, it still uses child_process.exec with a concatenated string instead of execFile/spawn with an argument array, and some composed arguments (e.g., cmd + ' ' + params.join(' ')) are not individually escaped, leaving residual risk."
+        }
+      }
+    ]
+  },
+  "strider-git": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The code uses several mitigations: (1) For non-SSH branches, it uses child_process.execFile with an argument array instead of exec, avoiding a shell entirely. (2) SSH URLs are passed through shell-escape (via shellEscape) before use, reducing injection risk when embedded in shell commands. (3) HTTP URLs embed only the username via encodeURIComponent, preventing special-character injection there. These measures limit direct interpolation of untrusted input into shell commands and avoid shell parsing where possible."
+        }
+      }
+    ]
+  },
+  "diskstats": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation":"The code avoids shell invocation entirely by using child_process.spawn() with df as the executable and the user-supplied path passed as a separate argument in an array. No shell: true option is used, and the path is never concatenated into a shell command string. _ensureAbsPath() also normalizes relative paths into absolute paths using path.join(). This prevents shell metacharacters in the path from being interpreted as OS commands, providing a strong command-injection mitigation."
+        }
+      }
+    ]
+  },
+  "whereis": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation": "The new implementation does not use child_process.exec() or spawn() at all."
+        }
+      }
+    ]
+  },
+  "macaddress": {
+    "chunks_analyzed": 1,
+    "chunk_details": [
+      {
+        "chunk_index": 1,
+        "result": {
+          "mitigation":"Active command-injection mitigation is present. The interface name is validated against a platform-specific allowlist regex before being passed to _getMacAddress(). On Unix-like systems only lowercase/uppercase letters and digits are permitted (^[a-z0-9]+$); Windows additionally permits spaces and dashes (^[a-z0-9 -]+$). This prevents shell metacharacters and other command syntax from reaching platform-specific command processors. The code explicitly documents that the validation exists because interface names may be passed to command processors."
+        }
+      }
+    ]
+  }
+}
