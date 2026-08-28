@@ -333,8 +333,8 @@
 | redos          |      |      |     |       |
 | :------------- | :--- | :--- | :-- | :---- |
 |                | Node | Deno | Bun | Total |
-| Vulnerable     | 79   | 89   | 74  | 242   |
-| Not vulnerable | 19   | 9    | 24  | 52    |
+| Vulnerable     | 83   | 77   | 63  | 223   |
+| Not vulnerable | 15   | 21   | 35  | 71    |
 | Timeout        | 0    | 0    | 0   | 0     |
 | Error          | 0    | 0    | 0   | 0     |
 | Total          | 98   | 98   | 98  |       |
@@ -398,8 +398,8 @@
 | redos          |      |      |     |       |
 | :------------- | :--- | :--- | :-- | :---- |
 |                | Node | Deno | Bun | Total |
-| Vulnerable     | 95   | 94   | 79  | 268   |
-| Not vulnerable | 3    | 4    | 19  | 26    |
+| Vulnerable     | 94   | 89   | 65  | 348   |
+| Not vulnerable | 4    | 9    | 33  | 46    |
 | Timeout        | 0    | 0    | 0   | 0     |
 | Error          | 0    | 0    | 0   | 0     |
 | Total          | 98   | 98   | 98  |       |
